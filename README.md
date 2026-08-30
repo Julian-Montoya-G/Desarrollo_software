@@ -1,19 +1,38 @@
-# React + Vite
+## Deploy en Netlify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+La aplicación se encuentra publicada en Netlify y puede accederse desde el siguiente enlace:
 
-Currently, two official plugins are available:
+[Ver aplicación desplegada](https://challengesreact.netlify.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# Challenge 02 - PWA
 
-## React Compiler
+Aplicación de contactos desarrollada en React y convertida en una Progressive Web App (PWA).
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Funcionalidades
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+- Carga inicial de contactos.
+- Loader al iniciar la aplicación.
+- Agregar contactos con nombre y teléfono.
+- Eliminar contactos.
+- Imagen agregada al componente principal.
+- Funcionamiento como PWA.
+- Estrategia híbrida de caché.
+- Icono personalizado.
+- Despliegue en Netlify.
 
-## Expanding the ESLint configuration
+## Instalación en Android
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Abrir el enlace de Netlify desde Google Chrome.
+2. Presionar el menú de los tres puntos.
+3. Seleccionar "Instalar aplicación" o "Agregar a pantalla principal".
+4. Confirmar la instalación.
+5. La aplicación aparecerá en la pantalla principal del dispositivo.
+
+## Tecnologías utilizadas
+
+- React
+- Vite
+- vite-plugin-pwa
+- Workbox
+- CSS
+- Netlify
