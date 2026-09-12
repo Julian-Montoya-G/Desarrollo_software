@@ -1,62 +1,98 @@
-import {
-  IonButton,
-  IonInput,
-  IonItem
-} from "@ionic/react";
-
 import { useState } from "react";
+
+import "./TaskForm.css";
 
 
 function TaskForm({ addTask }) {
 
+
   const [title, setTitle] = useState("");
 
 
-  const handleAddTask = () => {
 
-    if (title.trim() === "") {
+  const handleSubmit = (e) => {
+
+
+    e.preventDefault();
+
+
+
+    if(title.trim() === ""){
+
       return;
+
     }
+
+
 
     addTask(title);
 
+
+
     setTitle("");
+
+
   };
+
+
+
 
 
   return (
 
-    <div>
 
-      <IonItem>
+    <form
 
-        <IonInput
-          label="Nueva tarea"
-          labelPlacement="floating"
-          placeholder="Escribe una tarea"
-          value={title}
-          onIonInput={(event) =>
-            setTitle(event.detail.value)
-          }
-        />
+      className="task-form"
 
-      </IonItem>
+      onSubmit={handleSubmit}
+
+    >
 
 
-      <IonButton
-        expand="block"
-        onClick={handleAddTask}
-        className="ion-margin-top"
+      <input
+
+
+        type="text"
+
+
+        placeholder="Escribe una nueva tarea"
+
+
+        value={title}
+
+
+        onChange={(e)=>
+
+          setTitle(e.target.value)
+
+        }
+
+
+      />
+
+
+
+      <button
+
+        type="submit"
+
       >
 
         Agregar tarea
 
-      </IonButton>
 
-    </div>
+      </button>
+
+
+
+    </form>
+
 
   );
 
+
 }
+
 
 export default TaskForm;

@@ -1,0 +1,17 @@
+.task-list {
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+
+
+.empty-message {
+
+    color:#aaa;
+
+}

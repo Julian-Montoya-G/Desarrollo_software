@@ -1,89 +1,78 @@
-import { useEffect, useState } from "react";
-import ContactForm from "./components/ContactForm";
-import ContactList from "./components/ContactList";
-import Loader from "./components/Loader";
-import contactImage from "./assets/contact-image.jpg";
-import "./App.css";
+import { useState } from "react";
 
-function App() {
-  const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState(true);
+import Login from "./pages/Login";
+import Tasks from "./pages/Tasks";
 
-  useEffect(() => {
-    setTimeout(() => {
-      const initialContacts = [
-        {
-          id: 1,
-          name: "Juan Pérez",
-          phone: "300 123 4567",
-        },
-        {
-          id: 2,
-          name: "Laura Gómez",
-          phone: "310 987 6543",
-        },
-        {
-          id: 3,
-          name: "Carlos Rodríguez",
-          phone: "315 456 7890",
-        },
-      ];
 
-      setContacts(initialContacts);
-      setLoading(false);
-    }, 2000);
-  }, []);
 
-  const addContact = (name, phone) => {
-    const newContact = {
-      id: Date.now(),
-      name,
-      phone,
-    };
+function App(){
 
-    setContacts([...contacts, newContact]);
+
+  const [logged, setLogged] = useState(
+
+    localStorage.getItem("logged")
+
+  );
+
+
+
+  const handleLogin = () => {
+
+
+    setLogged(true);
+
+
   };
 
-  const deleteContact = (id) => {
-    setContacts(
-      contacts.filter((contact) => contact.id !== id)
+
+
+  const handleLogout = () => {
+
+
+    localStorage.removeItem(
+      "logged"
     );
+
+
+    setLogged(false);
+
+
   };
 
-  if (loading) {
-    return <Loader />;
+
+
+
+  if(!logged){
+
+
+    return (
+
+      <Login
+
+        onLogin={handleLogin}
+
+      />
+
+    );
+
+
   }
 
+
+
   return (
-    <div className="app">
-      <div className="container">
 
-        <div className="app-header">
-          <img
-            src={contactImage}
-            alt="Aplicación de contactos"
-            className="app-image"
-          />
+    <Tasks
 
-          <div>
-            <h1>Contactos</h1>
+      logout={handleLogout}
 
-            <p className="subtitle">
-              Administra tu lista de contactos
-            </p>
-          </div>
-        </div>
+    />
 
-        <ContactForm addContact={addContact} />
-
-        <ContactList
-          contacts={contacts}
-          deleteContact={deleteContact}
-        />
-
-      </div>
-    </div>
   );
+
+
 }
+
+
 
 export default App;

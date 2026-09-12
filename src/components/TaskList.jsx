@@ -1,8 +1,6 @@
-import {
-  IonList
-} from "@ionic/react";
-
 import TaskItem from "./TaskItem";
+
+import "./TaskList.css";
 
 
 function TaskList({
@@ -11,25 +9,54 @@ function TaskList({
   deleteTask
 }) {
 
+
   return (
 
-    <IonList className="ion-margin-top">
 
-      {tasks.map((task) => (
+    <div className="task-list">
 
-        <TaskItem
-          key={task.id}
-          task={task}
-          toggleTask={toggleTask}
-          deleteTask={deleteTask}
-        />
 
-      ))}
+      {
+        tasks.length === 0 ? (
 
-    </IonList>
+          <p className="empty-message">
+            No hay tareas disponibles
+          </p>
+
+
+        ) : (
+
+
+          tasks.map((task) => (
+
+
+            <TaskItem
+
+              key={task.id}
+
+              task={task}
+
+              toggleTask={toggleTask}
+
+              deleteTask={deleteTask}
+
+            />
+
+
+          ))
+
+
+        )
+      }
+
+
+    </div>
+
 
   );
 
+
 }
+
 
 export default TaskList;

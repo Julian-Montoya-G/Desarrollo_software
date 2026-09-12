@@ -1,0 +1,45 @@
+.tasks-container {
+
+    min-height:100vh;
+
+    background:#121212;
+
+    color:white;
+
+    padding:30px;
+
+}
+
+
+
+.tasks-header {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.logout-button {
+
+
+    background:#e91429;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 20px;
+
+    border-radius:20px;
+
+    cursor:pointer;
+
+
+}

@@ -1,0 +1,49 @@
+.task-form {
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.task-form input {
+
+
+    flex:1;
+
+    padding:15px;
+
+    border-radius:8px;
+
+    border:none;
+
+    background:#282828;
+
+    color:white;
+
+
+}
+
+
+
+.task-form button {
+
+
+    background:#1db954;
+
+    border:none;
+
+    border-radius:25px;
+
+    padding:0 25px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+
+}

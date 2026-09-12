@@ -1,9 +1,4 @@
-import {
-  IonButton,
-  IonCheckbox,
-  IonItem,
-  IonLabel
-} from "@ionic/react";
+import "./TaskItem.css";
 
 
 function TaskItem({
@@ -12,58 +7,67 @@ function TaskItem({
   deleteTask
 }) {
 
+
   return (
 
-    <IonItem>
 
-      <IonCheckbox
-        slot="start"
+    <div className="task-item">
+
+
+      <input
+
+        type="checkbox"
+
         checked={task.completed}
-        onIonChange={() =>
+
+        onChange={() => 
           toggleTask(task.id)
         }
+
       />
 
 
-      <IonLabel>
 
-        <h2
-          style={{
-            textDecoration:
-              task.completed
-                ? "line-through"
-                : "none",
+      <span
 
-            opacity:
-              task.completed
-                ? 0.5
-                : 1,
-          }}
-        >
+        className={
+          task.completed
+            ? "completed"
+            : ""
+        }
 
-          {task.title}
+      >
 
-        </h2>
+        {task.title}
 
-      </IonLabel>
+      </span>
 
 
-      <IonButton
-        color="danger"
-        fill="outline"
+
+
+      <button
+
+        className="delete-button"
+
         onClick={() =>
           deleteTask(task.id)
         }
+
       >
 
         Eliminar
 
-      </IonButton>
+      </button>
 
-    </IonItem>
+
+
+    </div>
+
 
   );
 
+
 }
+
 
 export default TaskItem;
