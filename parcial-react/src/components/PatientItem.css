@@ -1,0 +1,38 @@
+.patient-card {
+
+  background:#1E293B;
+
+  padding:20px;
+
+  border-radius:15px;
+
+  margin-bottom:15px;
+
+  transition:.3s;
+
+}
+
+
+.patient-card:hover {
+
+  transform:translateY(-3px);
+
+  background:#243B67;
+
+}
+
+
+.patient-card h3 {
+
+  margin-top:0;
+
+  color:#38BDF8;
+
+}
+
+
+.patient-card p {
+
+  color:#CBD5E1;
+
+}

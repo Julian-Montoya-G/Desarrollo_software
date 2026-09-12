@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+
+  margin: 0;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  background: #0B1120;
+
+  color: white;
+
+}
+
+
+button {
+
+  cursor: pointer;
+
+  border: none;
+
+}
+
+
+input {
+
+  outline: none;
+
+}

@@ -1,0 +1,53 @@
+form {
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+
+
+form input {
+
+padding:14px;
+
+border-radius:10px;
+
+border:none;
+
+background:#1E293B;
+
+color:white;
+
+}
+
+
+
+form button {
+
+
+background:#2563EB;
+
+color:white;
+
+padding:14px;
+
+border-radius:25px;
+
+font-weight:bold;
+
+
+}
+
+
+
+form button:hover {
+
+
+background:#38BDF8;
+
+
+}
