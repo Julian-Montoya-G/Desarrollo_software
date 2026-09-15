@@ -82,25 +82,34 @@ function Pacientes() {
 
       <IonContent className="ion-padding">
 
-        <IonSearchbar
-          value={search}
-          placeholder="Buscar paciente"
-          onIonInput={(e) =>
-            setSearch(e.detail.value ?? "")
-          }
-        />
+  <div className="page-container">
 
+    <h1 className="section-title">
+      Pacientes
+    </h1>
 
-        {filteredPatients.map((patient) => (
+    <p className="section-subtitle">
+      Consulta rápidamente la información de los pacientes.
+    </p>
 
-          <PatientCard
-            key={patient.id}
-            patient={patient}
-          />
+    <IonSearchbar
+      value={search}
+      placeholder="Buscar paciente"
+      onIonInput={(e) =>
+        setSearch(e.detail.value ?? "")
+      }
+    />
 
-        ))}
+    {filteredPatients.map((patient) => (
+      <PatientCard
+        key={patient.id}
+        patient={patient}
+      />
+    ))}
 
-      </IonContent>
+  </div>
+
+</IonContent>
 
     </IonPage>
 
