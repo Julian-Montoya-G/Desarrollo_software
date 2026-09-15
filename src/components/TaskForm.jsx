@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-import "./TaskForm.css";
-
+import "../pages/TaskForm.css";
 
 function TaskForm({ addTask }) {
 

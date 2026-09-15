@@ -1,6 +1,6 @@
 import TaskItem from "./TaskItem";
 
-import "./TaskList.css";
+import "../pages/TaskList.css";
 
 
 function TaskList({

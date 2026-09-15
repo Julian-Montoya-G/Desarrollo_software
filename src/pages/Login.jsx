@@ -13,21 +13,14 @@ function Login({onLogin}) {
     const handleLogin = () => {
 
 
-        if(
-            email === "user@mail.com" &&
-            password === "123"
-        ){
+if (
+  email === "user@mail.com" &&
+  password === "123"
+) {
 
-            localStorage.setItem(
-                "logged",
-                "true"
-            );
+  onLogin();
 
-
-            onLogin();
-
-
-        }else{
+}else{
 
             alert(
                 "Usuario o contraseña incorrectos"

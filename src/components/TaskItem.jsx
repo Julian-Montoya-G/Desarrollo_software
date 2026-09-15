@@ -1,4 +1,4 @@
-import "./TaskItem.css";
+import "../pages/TaskItem.css";
 
 
 function TaskItem({
