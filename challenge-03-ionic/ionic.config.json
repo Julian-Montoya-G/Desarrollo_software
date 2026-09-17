@@ -1,0 +1,7 @@
+{
+  "name": "challenge-03-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
