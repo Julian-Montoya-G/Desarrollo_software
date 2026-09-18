@@ -1,4 +1,5 @@
 import {
+  IonButton,
   IonContent,
   IonHeader,
   IonPage,
@@ -11,228 +12,162 @@ import {
   useState
 } from "react";
 
-
 import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
 
-
 import {
   Task
-} from "../Types/Task";
+} from "../types/Task";
 
 
-
-function Tasks(){
-
-
-const [tasks,setTasks] = useState<Task[]>(()=>{
-
-
-const savedTasks = localStorage.getItem("tasks");
-
-
-return savedTasks
-
-? JSON.parse(savedTasks)
-
-: [
-
-{
-
-id:1,
-
-title:"Aprender Ionic",
-
-completed:false
-
-},
-
-{
-
-id:2,
-
-title:"Realizar Challenge 03",
-
-completed:false
-
+interface Props {
+  logout: () => void;
 }
 
-];
+
+function Tasks({ logout }: Props) {
 
 
-});
+  const [tasks, setTasks] = useState<Task[]>(() => {
+
+    const savedTasks = localStorage.getItem("tasks");
+
+    return savedTasks
+      ? JSON.parse(savedTasks)
+      : [
+          {
+            id: 1,
+            title: "Aprender Ionic",
+            completed: false
+          },
+          {
+            id: 2,
+            title: "Realizar Challenge 03",
+            completed: false
+          }
+        ];
+
+  });
 
 
+  useEffect(() => {
 
-useEffect(()=>{
+    localStorage.setItem(
+      "tasks",
+      JSON.stringify(tasks)
+    );
 
-
-localStorage.setItem(
-
-"tasks",
-
-JSON.stringify(tasks)
-
-);
+  }, [tasks]);
 
 
-},[tasks]);
+  const addTask = (title: string) => {
+
+    const newTask: Task = {
+
+      id: Date.now(),
+
+      title: title,
+
+      completed: false
+
+    };
 
 
+    setTasks([
+      ...tasks,
+      newTask
+    ]);
+
+  };
 
 
+  const toggleTask = (id: number) => {
 
-const addTask = (title:string)=>{
+    setTasks(
 
+      tasks.map((task) => {
 
-const newTask:Task={
+        if (task.id === id) {
 
+          return {
+            ...task,
+            completed: !task.completed
+          };
 
-id:Date.now(),
+        }
 
-title,
+        return task;
 
-completed:false
+      })
 
+    );
 
-};
-
-
-
-setTasks([
-
-...tasks,
-
-newTask
-
-]);
+  };
 
 
-};
+  const deleteTask = (id: number) => {
+
+    setTasks(
+
+      tasks.filter(
+        (task) => task.id !== id
+      )
+
+    );
+
+  };
 
 
+  return (
+
+    <IonPage>
 
 
+      <IonHeader>
 
-const toggleTask = (id:number)=>{
+        <IonToolbar>
+
+          <IonTitle>
+            Task Manager
+          </IonTitle>
 
 
-setTasks(
+          <IonButton
+            slot="end"
+            color="danger"
+            onClick={logout}
+          >
+            Cerrar sesión
+          </IonButton>
 
-tasks.map(task=>
+        </IonToolbar>
+
+      </IonHeader>
 
 
-task.id===id
+      <IonContent className="ion-padding">
 
-?
 
-{
+        <TaskForm
+          addTask={addTask}
+        />
 
-...task,
 
-completed:!task.completed
+        <TaskList
+          tasks={tasks}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+        />
+
+
+      </IonContent>
+
+
+    </IonPage>
+
+  );
 
 }
-
-:
-
-task
-
-
-)
-
-);
-
-
-};
-
-
-
-
-
-const deleteTask = (id:number)=>{
-
-
-setTasks(
-
-tasks.filter(
-
-task=>task.id!==id
-
-)
-
-);
-
-
-};
-
-
-
-
-
-return(
-
-
-<IonPage>
-
-
-<IonHeader>
-
-
-<IonToolbar>
-
-
-<IonTitle>
-
-Task Manager
-
-</IonTitle>
-
-
-</IonToolbar>
-
-
-</IonHeader>
-
-
-
-
-
-<IonContent className="ion-padding">
-
-
-
-<TaskForm
-
-addTask={addTask}
-
-/>
-
-
-
-<TaskList
-
-tasks={tasks}
-
-toggleTask={toggleTask}
-
-deleteTask={deleteTask}
-
-/>
-
-
-
-</IonContent>
-
-
-</IonPage>
-
-
-);
-
-
-}
-
 
 
 export default Tasks;

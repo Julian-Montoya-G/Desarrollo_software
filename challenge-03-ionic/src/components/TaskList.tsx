@@ -8,7 +8,7 @@ import TaskItem from "./TaskItem";
 
 import {
     Task
-} from "../Types/Task";
+} from "../types/Task";
 
 
 

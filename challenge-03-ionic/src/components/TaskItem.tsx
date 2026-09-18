@@ -13,7 +13,7 @@ IonLabel
 
 import {
     Task
-} from "../Types/Task";
+} from "../types/Task";
 
 
 
