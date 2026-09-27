@@ -1,189 +1,81 @@
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
+
+import { useTasks } from "../hooks/useTasks";
+import { useAuth } from "../hooks/useAuth";
 
 import "./Tasks.css";
 
 
-function Tasks({ logout }) {
+function Tasks() {
+
+  const navigate = useNavigate();
+
+  const {
+    tasks,
+    toggleTask,
+    deleteTask
+  } = useTasks();
 
 
-  const [tasks, setTasks] = useState(() => {
-
-    const savedTasks = localStorage.getItem("tasks");
-
-
-    return savedTasks
-
-      ? JSON.parse(savedTasks)
-
-      : [
-
-          {
-            id: 1,
-            title: "Aprender React",
-            completed: false,
-          },
-
-          {
-            id: 2,
-            title: "Realizar Challenge 03",
-            completed: false,
-          },
-
-        ];
-
-  });
+  const {
+    logout,
+    user
+  } = useAuth();
 
 
+  const handleLogout = async () => {
 
-  useEffect(() => {
+    await logout();
 
-    localStorage.setItem(
-      "tasks",
-      JSON.stringify(tasks)
-    );
-
-  }, [tasks]);
-
-
-
-
-
-  const addTask = (title) => {
-
-
-    const newTask = {
-
-      id: Date.now(),
-
-      title,
-
-      completed:false,
-
-    };
-
-
-    setTasks([
-
-      ...tasks,
-
-      newTask
-
-    ]);
-
+    navigate("/login");
 
   };
-
-
-
-
-
-
-  const toggleTask = (id) => {
-
-
-    const updatedTasks = tasks.map((task)=>{
-
-
-      if(task.id === id){
-
-
-        return {
-
-          ...task,
-
-          completed: !task.completed,
-
-        };
-
-
-      }
-
-
-      return task;
-
-
-    });
-
-
-
-    setTasks(updatedTasks);
-
-
-  };
-
-
-
-
-
-
-  const deleteTask = (id) => {
-
-
-    const updatedTasks = tasks.filter(
-
-      (task)=> task.id !== id
-
-    );
-
-
-    setTasks(updatedTasks);
-
-
-  };
-
-
-
-
-
 
 
   return (
 
-
     <div className="tasks-container">
-
-
 
       <header className="tasks-header">
 
+        <div>
 
-        <h1>
-          Task Manager
-        </h1>
+          <h1>
+            Task Manager
+          </h1>
 
+          {user && (
+
+            <p>
+              {user.email}
+            </p>
+
+          )}
+
+        </div>
 
 
         <button
-
           className="logout-button"
-
-          onClick={logout}
-
+          onClick={handleLogout}
         >
-
           Logout
-
         </button>
-
 
       </header>
 
 
-
-
-
       <main>
 
-
-        <TaskForm
-
-          addTask={addTask}
-
-        />
-
+        <button
+          onClick={() =>
+            navigate("/tasks/new")
+          }
+        >
+          Nueva tarea
+        </button>
 
 
         <TaskList
@@ -196,16 +88,11 @@ function Tasks({ logout }) {
 
         />
 
-
       </main>
-
-
 
     </div>
 
-
   );
-
 
 }
 

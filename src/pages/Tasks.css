@@ -1,45 +1,212 @@
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
 .tasks-container {
+  min-height: 100vh;
 
-    min-height:100vh;
+  padding: 40px 32px;
 
-    background:#121212;
+  background:
+    radial-gradient(
+      circle at 85% 5%,
+      rgba(99, 102, 241, 0.12),
+      transparent 30%
+    );
 
-    color:white;
+  color: var(--text);
 
-    padding:30px;
-
+  font-family: var(--font);
 }
 
 
+/* =========================================
+   HEADER
+========================================= */
 
 .tasks-header {
+  width: 100%;
 
-    display:flex;
+  max-width: 900px;
 
-    justify-content:space-between;
+  margin: 0 auto 38px;
 
-    align-items:center;
+  display: flex;
 
-    margin-bottom:30px;
+  align-items: center;
 
+  justify-content: space-between;
+
+  gap: 20px;
 }
 
 
+.tasks-header h1 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: var(--font);
+
+  font-size: 34px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.8px;
+}
+
+
+.tasks-header p {
+  margin-top: 6px;
+
+  color: var(--text-secondary);
+
+  font-family: var(--font);
+
+  font-size: 13px;
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
 
 .logout-button {
+  padding: 10px 17px;
+
+  background: transparent;
+
+  color: var(--text-secondary);
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  font-family: var(--font);
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
 
 
-    background:#e91429;
+.logout-button:hover {
+  background: rgba(239, 68, 68, 0.1);
 
-    color:white;
+  color: #fca5a5;
 
-    border:none;
+  border-color: rgba(239, 68, 68, 0.4);
 
-    padding:10px 20px;
+  transform: translateY(-1px);
+}
 
-    border-radius:20px;
 
-    cursor:pointer;
+/* =========================================
+   CONTENIDO
+========================================= */
 
+.tasks-container main {
+  width: 100%;
+
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+
+/* =========================================
+   BOTÓN NUEVA TAREA
+========================================= */
+
+.tasks-container main > button {
+  display: block;
+
+  margin-left: auto;
+
+  margin-bottom: 18px;
+
+  padding: 11px 17px;
+
+  background: var(--primary);
+
+  color: #ffffff;
+
+  border: 1px solid var(--primary);
+
+  border-radius: 9px;
+
+  font-family: var(--font);
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.tasks-container main > button:hover {
+  background: var(--primary-hover);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 18px rgba(99, 102, 241, 0.2);
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 650px) {
+
+  .tasks-container {
+    padding: 28px 16px;
+  }
+
+
+  .tasks-header {
+    align-items: flex-start;
+
+    margin-bottom: 28px;
+  }
+
+
+  .tasks-header h1 {
+    font-size: 27px;
+  }
+
+
+  .tasks-header p {
+    font-size: 12px;
+  }
+
+
+  .logout-button {
+    padding: 9px 13px;
+  }
+
+
+  .tasks-container main > button {
+    width: 100%;
+
+    margin-bottom: 14px;
+  }
 
 }

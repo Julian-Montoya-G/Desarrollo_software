@@ -1,4 +1,6 @@
-import { useState } from "react";
+import {
+  useState
+} from "react";
 
 import {
   useNavigate
@@ -11,12 +13,12 @@ import {
 import "./Login.css";
 
 
-function Login() {
+function Register() {
 
   const navigate = useNavigate();
 
   const {
-    login
+    register
   } = useAuth();
 
 
@@ -30,7 +32,7 @@ function Login() {
     useState("");
 
 
-  const handleLogin = async (event) => {
+  const handleRegister = async (event) => {
 
     event.preventDefault();
 
@@ -39,7 +41,7 @@ function Login() {
 
     try {
 
-      await login(
+      await register(
         email,
         password
       );
@@ -49,7 +51,7 @@ function Login() {
     } catch {
 
       setError(
-        "Correo o contraseña incorrectos."
+        "No fue posible crear la cuenta."
       );
 
     }
@@ -64,11 +66,11 @@ function Login() {
       <div className="login-card">
 
         <h1>
-          Task Manager
+          Crear cuenta
         </h1>
 
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
 
           <input
             type="email"
@@ -93,17 +95,21 @@ function Login() {
 
 
           <button type="submit">
-            Login
+
+            Crear cuenta
+
           </button>
 
 
           <button
             type="button"
             onClick={() =>
-              navigate("/register")
+              navigate("/login")
             }
           >
-            Crear una cuenta
+
+            Volver al Login
+
           </button>
 
         </form>
@@ -112,7 +118,9 @@ function Login() {
         {error && (
 
           <p className="login-error">
+
             {error}
+
           </p>
 
         )}
@@ -126,4 +134,4 @@ function Login() {
 }
 
 
-export default Login;
+export default Register;

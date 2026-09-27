@@ -1,71 +1,165 @@
 .task-item {
+  width: 100%;
 
+  display: flex;
 
-    background:#181818;
+  align-items: center;
 
-    padding:20px;
+  gap: 14px;
 
-    border-radius:12px;
+  padding: 16px 18px;
 
-    display:flex;
+  margin-bottom: 10px;
 
-    align-items:center;
+  background: rgba(17, 24, 39, 0.85);
 
-    gap:15px;
+  border: 1px solid var(--border);
 
+  border-radius: 12px;
 
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 
+.task-item:hover {
+  background: var(--surface);
+
+  border-color: #35445c;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================
+   CHECKBOX
+========================================= */
+
+.task-item input[type="checkbox"] {
+  width: 18px;
+
+  height: 18px;
+
+  margin: 0;
+
+  accent-color: var(--primary);
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================
+   TASK TITLE
+========================================= */
 
 .task-item span {
+  flex: 1;
 
-    flex:1;
+  min-width: 0;
 
-    color:white;
+  color: var(--text);
 
+  font-family: var(--font);
+
+  font-size: 14px;
+
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  cursor: pointer;
 }
 
 
+/* =========================================
+   COMPLETED TASK
+========================================= */
 
 .completed {
+  color: var(--text-secondary) !important;
 
+  text-decoration: line-through;
 
-    text-decoration:line-through;
+  text-decoration-thickness: 1px;
 
-    color:#888 !important;
-
-
+  opacity: 0.65;
 }
 
 
+/* =========================================
+   DELETE BUTTON
+========================================= */
 
 .delete-button {
+  flex-shrink: 0;
 
+  padding: 8px 13px;
 
-    background:transparent;
+  background: transparent;
 
-    border:1px solid #777;
+  color: var(--text-secondary);
 
-    color:white;
+  border: 1px solid var(--border);
 
-    padding:8px 15px;
+  border-radius: 8px;
 
-    border-radius:20px;
+  font-family: var(--font);
 
-    cursor:pointer;
+  font-size: 12px;
 
+  font-weight: 600;
 
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
 }
-
 
 
 .delete-button:hover {
+  background: rgba(239, 68, 68, 0.1);
+
+  color: #fca5a5;
+
+  border-color: rgba(239, 68, 68, 0.4);
+
+  transform: translateY(-1px);
+}
 
 
-    background:#e91429;
+/* =========================================
+   MOBILE
+========================================= */
 
-    border-color:#e91429;
+@media (max-width: 500px) {
 
+  .task-item {
+    padding: 14px;
+
+    gap: 10px;
+  }
+
+
+  .task-item span {
+    font-size: 13px;
+  }
+
+
+  .delete-button {
+    padding: 7px 10px;
+
+    font-size: 11px;
+  }
 
 }

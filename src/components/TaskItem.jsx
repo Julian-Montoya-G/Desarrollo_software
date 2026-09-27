@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import "../pages/TaskItem.css";
 
 
@@ -7,12 +9,12 @@ function TaskItem({
   deleteTask
 }) {
 
+  const navigate = useNavigate();
+
 
   return (
 
-
     <div className="task-item">
-
 
       <input
 
@@ -20,12 +22,11 @@ function TaskItem({
 
         checked={task.completed}
 
-        onChange={() => 
+        onChange={() =>
           toggleTask(task.id)
         }
 
       />
-
 
 
       <span
@@ -36,13 +37,19 @@ function TaskItem({
             : ""
         }
 
+        onClick={() =>
+          navigate(`/tasks/${task.id}`)
+        }
+
+        style={{
+          cursor: "pointer"
+        }}
+
       >
 
         {task.title}
 
       </span>
-
-
 
 
       <button
@@ -60,12 +67,9 @@ function TaskItem({
       </button>
 
 
-
     </div>
 
-
   );
-
 
 }
 
