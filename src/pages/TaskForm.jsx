@@ -1,11 +1,18 @@
-import { useState } from "react";
+import {
+  useEffect,
+  useState
+} from "react";
 
 import {
   useNavigate,
   useParams
 } from "react-router-dom";
 
-import { useTasks } from "../hooks/useTasks";
+import {
+  useTasks
+} from "../hooks/useTasks";
+
+import useNetwork from "../hooks/useNetwork";
 
 import "./TaskForm.css";
 
@@ -16,6 +23,7 @@ function TaskForm() {
 
   const { id } = useParams();
 
+
   const {
     tasks,
     addTask,
@@ -23,51 +31,93 @@ function TaskForm() {
   } = useTasks();
 
 
-  const editing = Boolean(id);
+  const {
+    isOnline
+  } = useNetwork();
 
 
-  const existingTask = editing
-    ? tasks.find(
-        (task) =>
-          task.id.toString() === id
-      )
-    : null;
+  const editing =
+    Boolean(id);
 
 
-  const [title, setTitle] = useState(
-    existingTask?.title || ""
-  );
+  const existingTask =
+    editing
+
+      ? tasks.find(
+          (task) =>
+            task.id === id
+        )
+
+      : null;
 
 
-  const handleSubmit = (event) => {
-
-    event.preventDefault();
-
-
-    if (!title.trim()) {
-      return;
-    }
+  const [title, setTitle] =
+    useState("");
 
 
-    if (editing) {
+  useEffect(() => {
 
-      updateTask(
-        Number(id),
-        title.trim()
-      );
+    if (existingTask) {
 
-    } else {
-
-      addTask(
-        title.trim()
+      setTitle(
+        existingTask.title
       );
 
     }
 
+  }, [existingTask]);
 
-    navigate("/tasks");
 
-  };
+  const handleSubmit =
+    async (event) => {
+
+      event.preventDefault();
+
+
+      if (!isOnline) {
+
+        return;
+
+      }
+
+
+      if (!title.trim()) {
+
+        return;
+
+      }
+
+
+      try {
+
+        if (editing) {
+
+          await updateTask(
+            id,
+            title.trim()
+          );
+
+        } else {
+
+          await addTask(
+            title.trim()
+          );
+
+        }
+
+
+        navigate("/tasks");
+
+      } catch (error) {
+
+        console.error(
+          "Error guardando tarea:",
+          error
+        );
+
+      }
+
+    };
 
 
   return (
@@ -77,9 +127,11 @@ function TaskForm() {
       <header className="tasks-header">
 
         <h1>
+
           {editing
             ? "Editar tarea"
             : "Nueva tarea"}
+
         </h1>
 
       </header>
@@ -87,19 +139,43 @@ function TaskForm() {
 
       <main>
 
-        <form onSubmit={handleSubmit}>
+        {!isOnline && (
+
+          <div className="network-warning">
+
+            🔴 Sin conexión a Internet.
+            No puedes guardar tareas.
+
+          </div>
+
+        )}
+
+
+        <form
+          onSubmit={handleSubmit}
+        >
 
           <input
+
             type="text"
+
             placeholder="Título de la tarea"
+
             value={title}
+
             onChange={(event) =>
-              setTitle(event.target.value)
+              setTitle(
+                event.target.value
+              )
             }
+
           />
 
 
-          <button type="submit">
+          <button
+            type="submit"
+            disabled={!isOnline}
+          >
 
             {editing
               ? "Guardar cambios"

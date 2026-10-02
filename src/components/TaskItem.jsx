@@ -1,4 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import {
+  useNavigate
+} from "react-router-dom";
 
 import "../pages/TaskItem.css";
 
@@ -6,10 +8,12 @@ import "../pages/TaskItem.css";
 function TaskItem({
   task,
   toggleTask,
-  deleteTask
+  deleteTask,
+  isOnline
 }) {
 
-  const navigate = useNavigate();
+  const navigate =
+    useNavigate();
 
 
   return (
@@ -22,8 +26,12 @@ function TaskItem({
 
         checked={task.completed}
 
+        disabled={!isOnline}
+
         onChange={() =>
-          toggleTask(task.id)
+          toggleTask(
+            task.id
+          )
         }
 
       />
@@ -37,9 +45,13 @@ function TaskItem({
             : ""
         }
 
-        onClick={() =>
-          navigate(`/tasks/${task.id}`)
-        }
+        onClick={() => {
+
+          navigate(
+            `/tasks/${task.id}`
+          );
+
+        }}
 
         style={{
           cursor: "pointer"
@@ -56,8 +68,12 @@ function TaskItem({
 
         className="delete-button"
 
+        disabled={!isOnline}
+
         onClick={() =>
-          deleteTask(task.id)
+          deleteTask(
+            task.id
+          )
         }
 
       >
@@ -65,7 +81,6 @@ function TaskItem({
         Eliminar
 
       </button>
-
 
     </div>
 

@@ -10,6 +10,13 @@ import Register from "./pages/Register";
 import Tasks from "./pages/Tasks";
 import TaskForm from "./pages/TaskForm";
 import TaskDetail from "./pages/TaskDetail";
+import Contacts from "./pages/Contacts";
+import ContactForm from "./pages/ContactForm";
+import ContactDetail from "./pages/ContactDetail";
+import EditContact from "./pages/EditContact";
+import Fruits from "./pages/Fruits";
+import NetworkTest from "./pages/NetworkTest";
+
 
 import ProtectedRoute
   from "./components/ProtectedRoute";
@@ -35,6 +42,40 @@ function App() {
           element={<Register />}
         />
 
+        <Route
+            path="/contacts"
+            element={<Contacts />}
+        />
+
+        <Route
+             path="/contacts/new"
+            element={<ContactForm />}
+        />
+
+        <Route
+            path="/contacts/:id"
+            element={<ContactDetail />}
+        />
+
+        <Route
+            path="/contacts/:id/edit"
+            element={<EditContact />}
+        />
+
+        <Route
+            path="/contacts/:id/edit"
+            element={<EditContact />}
+        />
+
+        <Route
+            path="/fruits"
+            element={<Fruits />}
+        />
+
+        <Route
+  path="/network-test"
+  element={<NetworkTest />}
+/>
 
         {/* Rutas protegidas */}
 

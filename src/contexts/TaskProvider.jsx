@@ -3,130 +3,278 @@ import {
   useState
 } from "react";
 
+import {
+  onValue,
+  push,
+  ref,
+  set,
+  update,
+  remove
+} from "firebase/database";
+
+import {
+  useAuth
+} from "../hooks/useAuth";
+
+import {
+  realtimeDb
+} from "../firebase/config";
+
 import TaskContext from "./TaskContext";
 
 
-function TaskProvider({ children }) {
+function TaskProvider({
+  children
+}) {
 
-  const [tasks, setTasks] = useState(() => {
+  const {
+    user
+  } = useAuth();
 
-    const savedTasks =
-      localStorage.getItem("tasks");
 
-    return savedTasks
+  const [tasks, setTasks] =
+    useState([]);
 
-      ? JSON.parse(savedTasks)
 
-      : [
-          {
-            id: 1,
-            title: "Aprender React",
-            completed: false,
-          },
-          {
-            id: 2,
-            title: "Realizar Challenge 05",
-            completed: false,
-          },
-        ];
-
-  });
+  const [loading, setLoading] =
+    useState(true);
 
 
   useEffect(() => {
 
-    localStorage.setItem(
-      "tasks",
-      JSON.stringify(tasks)
-    );
+    if (!user) {
 
-  }, [tasks]);
+      return;
+
+    }
 
 
-  const addTask = (title) => {
+    const tasksReference =
+      ref(
+        realtimeDb,
+        `tasks/${user.uid}`
+      );
 
-    const newTask = {
 
-      id: Date.now(),
+    const unsubscribe =
+      onValue(
+        tasksReference,
+        (snapshot) => {
 
-      title,
+          const data =
+            snapshot.val();
 
-      completed: false,
+
+          if (!data) {
+
+            setTasks([]);
+
+            setLoading(false);
+
+            return;
+
+          }
+
+
+          const loadedTasks =
+            Object.entries(
+              data
+            ).map(
+              ([id, task]) => ({
+
+                id,
+
+                ...task
+
+              })
+            );
+
+
+          setTasks(
+            loadedTasks
+          );
+
+
+          setLoading(false);
+
+        }
+      );
+
+
+    return () => {
+
+      unsubscribe();
+
+    };
+
+  }, [user]);
+
+
+  const addTask =
+    async (
+      title
+    ) => {
+
+      if (!user) {
+
+        throw new Error(
+          "Debes iniciar sesión para crear una tarea."
+        );
+
+      }
+
+
+      const tasksReference =
+        ref(
+          realtimeDb,
+          `tasks/${user.uid}`
+        );
+
+
+      const newTaskReference =
+        push(
+          tasksReference
+        );
+
+
+      await set(
+        newTaskReference,
+        {
+
+          title:
+            title.trim(),
+
+          completed:
+            false
+
+        }
+      );
 
     };
 
 
-    setTasks((currentTasks) => [
+  const updateTask =
+    async (
+      id,
+      title
+    ) => {
 
-      ...currentTasks,
+      if (!user) {
 
-      newTask
+        throw new Error(
+          "Debes iniciar sesión para actualizar una tarea."
+        );
 
-    ]);
-
-  };
-
-
-  const updateTask = (id, title) => {
-
-    setTasks((currentTasks) =>
-
-      currentTasks.map((task) =>
-
-        task.id === id
-
-          ? {
-              ...task,
-              title
-            }
-
-          : task
-
-      )
-
-    );
-
-  };
+      }
 
 
-  const toggleTask = (id) => {
-
-    setTasks((currentTasks) =>
-
-      currentTasks.map((task) =>
-
-        task.id === id
-
-          ? {
-              ...task,
-              completed: !task.completed
-            }
-
-          : task
-
-      )
-
-    );
-
-  };
+      const taskReference =
+        ref(
+          realtimeDb,
+          `tasks/${user.uid}/${id}`
+        );
 
 
-  const deleteTask = (id) => {
+      await update(
+        taskReference,
+        {
 
-    setTasks((currentTasks) =>
+          title:
+            title.trim()
 
-      currentTasks.filter(
-        (task) => task.id !== id
-      )
+        }
+      );
 
-    );
+    };
 
-  };
+
+  const toggleTask =
+    async (
+      id
+    ) => {
+
+      if (!user) {
+
+        throw new Error(
+          "Debes iniciar sesión para actualizar una tarea."
+        );
+
+      }
+
+
+      const currentTask =
+        tasks.find(
+          (task) =>
+            task.id === id
+        );
+
+
+      if (!currentTask) {
+
+        return;
+
+      }
+
+
+      const taskReference =
+        ref(
+          realtimeDb,
+          `tasks/${user.uid}/${id}`
+        );
+
+
+      await update(
+        taskReference,
+        {
+
+          completed:
+            !currentTask.completed
+
+        }
+      );
+
+    };
+
+
+  const deleteTask =
+    async (
+      id
+    ) => {
+
+      if (!user) {
+
+        throw new Error(
+          "Debes iniciar sesión para eliminar una tarea."
+        );
+
+      }
+
+
+      const taskReference =
+        ref(
+          realtimeDb,
+          `tasks/${user.uid}/${id}`
+        );
+
+
+      await remove(
+        taskReference
+      );
+
+    };
 
 
   const value = {
 
-    tasks,
+    tasks:
+      user
+        ? tasks
+        : [],
+
+    loading:
+      user
+        ? loading
+        : false,
 
     addTask,
 
@@ -141,7 +289,9 @@ function TaskProvider({ children }) {
 
   return (
 
-    <TaskContext.Provider value={value}>
+    <TaskContext.Provider
+      value={value}
+    >
 
       {children}
 

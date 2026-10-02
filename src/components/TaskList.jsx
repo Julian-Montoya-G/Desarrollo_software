@@ -6,55 +6,48 @@ import "../pages/TaskList.css";
 function TaskList({
   tasks,
   toggleTask,
-  deleteTask
+  deleteTask,
+  isOnline
 }) {
 
 
   return (
 
-
     <div className="task-list">
 
+      {tasks.length === 0 ? (
 
-      {
-        tasks.length === 0 ? (
+        <p className="empty-message">
 
-          <p className="empty-message">
-            No hay tareas disponibles
-          </p>
+          No hay tareas disponibles
 
+        </p>
 
-        ) : (
+      ) : (
 
+        tasks.map((task) => (
 
-          tasks.map((task) => (
+          <TaskItem
 
+            key={task.id}
 
-            <TaskItem
+            task={task}
 
-              key={task.id}
+            toggleTask={toggleTask}
 
-              task={task}
+            deleteTask={deleteTask}
 
-              toggleTask={toggleTask}
+            isOnline={isOnline}
 
-              deleteTask={deleteTask}
+          />
 
-            />
+        ))
 
-
-          ))
-
-
-        )
-      }
-
+      )}
 
     </div>
 
-
   );
-
 
 }
 

@@ -12,14 +12,16 @@ import AuthProvider
 import TaskProvider
   from "./contexts/TaskProvider";
 
-import "./index.css";
+import ContactProvider
+  from "./contexts/ContactContext";
 
 
 const container =
   document.getElementById("root");
 
 
-const root = createRoot(container);
+const root =
+  createRoot(container);
 
 
 root.render(
@@ -28,11 +30,15 @@ root.render(
 
     <AuthProvider>
 
-      <TaskProvider>
+      <ContactProvider>
 
-        <App />
+        <TaskProvider>
 
-      </TaskProvider>
+          <App />
+
+        </TaskProvider>
+
+      </ContactProvider>
 
     </AuthProvider>
 

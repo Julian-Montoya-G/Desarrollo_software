@@ -1,21 +1,24 @@
 /* =========================================
-   CONTENEDOR PRINCIPAL
+   TASK MANAGER
 ========================================= */
 
 .tasks-container {
   min-height: 100vh;
-
   padding: 40px 32px;
-
   background:
     radial-gradient(
       circle at 85% 5%,
-      rgba(99, 102, 241, 0.12),
+      rgba(139, 92, 246, 0.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(124, 58, 237, 0.12),
       transparent 30%
-    );
+    ),
+    #0b0812;
 
-  color: var(--text);
-
+  color: #f5f3ff;
   font-family: var(--font);
 }
 
@@ -26,15 +29,11 @@
 
 .tasks-header {
   width: 100%;
-
-  max-width: 900px;
-
-  margin: 0 auto 38px;
+  max-width: 950px;
+  margin: 0 auto 32px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   gap: 20px;
@@ -44,26 +43,19 @@
 .tasks-header h1 {
   margin: 0;
 
-  color: var(--text);
+  color: #f5f3ff;
 
-  font-family: var(--font);
-
-  font-size: 34px;
-
+  font-size: 36px;
   font-weight: 700;
 
-  line-height: 1.2;
-
-  letter-spacing: -0.8px;
+  letter-spacing: -1px;
 }
 
 
 .tasks-header p {
-  margin-top: 6px;
+  margin: 7px 0 0;
 
-  color: var(--text-secondary);
-
-  font-family: var(--font);
+  color: #a9a0b8;
 
   font-size: 13px;
 }
@@ -76,26 +68,23 @@
 .logout-button {
   padding: 10px 17px;
 
-  background: transparent;
+  background: rgba(255, 255, 255, 0.03);
 
-  color: var(--text-secondary);
+  color: #c8bfd4;
 
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
-  border-radius: 9px;
-
-  font-family: var(--font);
+  border-radius: 10px;
 
   font-size: 13px;
-
   font-weight: 600;
 
   cursor: pointer;
 
   transition:
     background 0.2s ease,
-    color 0.2s ease,
     border-color 0.2s ease,
+    color 0.2s ease,
     transform 0.2s ease;
 }
 
@@ -105,7 +94,7 @@
 
   color: #fca5a5;
 
-  border-color: rgba(239, 68, 68, 0.4);
+  border-color: rgba(239, 68, 68, 0.35);
 
   transform: translateY(-1px);
 }
@@ -117,56 +106,333 @@
 
 .tasks-container main {
   width: 100%;
-
-  max-width: 900px;
+  max-width: 950px;
 
   margin: 0 auto;
 }
 
 
 /* =========================================
-   BOTÓN NUEVA TAREA
+   AVISO DE RED
 ========================================= */
 
-.tasks-container main > button {
-  display: block;
-
-  margin-left: auto;
+.network-warning {
+  width: 100%;
+  box-sizing: border-box;
 
   margin-bottom: 18px;
+  padding: 13px 16px;
 
-  padding: 11px 17px;
+  background: rgba(239, 68, 68, 0.08);
 
-  background: var(--primary);
+  color: #fca5a5;
 
-  color: #ffffff;
+  border: 1px solid rgba(239, 68, 68, 0.25);
 
-  border: 1px solid var(--primary);
-
-  border-radius: 9px;
-
-  font-family: var(--font);
+  border-radius: 12px;
 
   font-size: 13px;
+  font-weight: 500;
+}
 
+
+/* =========================================
+   NAVEGACIÓN
+========================================= */
+
+.task-navigation {
+  display: flex;
+
+  gap: 10px;
+
+  margin-bottom: 24px;
+}
+
+
+.task-navigation button {
+  padding: 11px 16px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: #cfc7da;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 10px;
+
+  font-size: 13px;
   font-weight: 600;
 
   cursor: pointer;
 
   transition:
     background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.task-navigation button:hover {
+  background: rgba(139, 92, 246, 0.12);
+
+  color: #ddd6fe;
+
+  border-color: rgba(139, 92, 246, 0.35);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   NUEVA TAREA
+========================================= */
+
+.tasks-container main > button {
+  padding: 12px 18px;
+
+  margin-bottom: 18px;
+
+  background: linear-gradient(
+    135deg,
+    #8b5cf6,
+    #7c3aed
+  );
+
+  color: #ffffff;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 24px rgba(124, 58, 237, 0.22);
+
+  transition:
     transform 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
 
 .tasks-container main > button:hover {
-  background: var(--primary-hover);
-
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 
   box-shadow:
-    0 8px 18px rgba(99, 102, 241, 0.2);
+    0 12px 30px rgba(124, 58, 237, 0.32);
+}
+
+
+.tasks-container main > button:disabled,
+.task-navigation button:disabled {
+  opacity: 0.4;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* =========================================
+   TASK ITEM
+========================================= */
+
+.task-item {
+  width: 100%;
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 17px 18px;
+
+  margin-bottom: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.07),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.task-item:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(139, 92, 246, 0.35);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.11),
+      rgba(255, 255, 255, 0.035)
+    );
+}
+
+
+/* =========================================
+   CHECKBOX
+========================================= */
+
+.task-item input[type="checkbox"] {
+  width: 19px;
+  height: 19px;
+
+  margin: 0;
+
+  accent-color: #8b5cf6;
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+
+.task-item input[type="checkbox"]:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.4;
+}
+
+
+/* =========================================
+   TASK TITLE
+========================================= */
+
+.task-item span {
+  flex: 1;
+
+  min-width: 0;
+
+  color: #eee9f7;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease;
+}
+
+
+.task-item span:hover {
+  color: #c4b5fd;
+}
+
+
+/* =========================================
+   COMPLETED
+========================================= */
+
+.completed {
+  color: #8f879d !important;
+
+  text-decoration: line-through;
+
+  text-decoration-thickness: 1px;
+
+  opacity: 0.65;
+}
+
+
+/* =========================================
+   DELETE
+========================================= */
+
+.delete-button {
+  flex-shrink: 0;
+
+  padding: 8px 13px;
+
+  background: transparent;
+
+  color: #aaa1b4;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.delete-button:hover {
+  background: rgba(239, 68, 68, 0.1);
+
+  color: #fca5a5;
+
+  border-color:
+    rgba(239, 68, 68, 0.35);
+}
+
+
+.delete-button:disabled {
+  opacity: 0.35;
+
+  cursor: not-allowed;
+}
+
+
+/* =========================================
+   LISTA
+========================================= */
+
+.task-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.empty-message {
+  padding: 35px 20px;
+
+  text-align: center;
+
+  color: #8f879d;
+
+  font-size: 14px;
+
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+
+  border-radius: 14px;
 }
 
 
@@ -184,29 +450,50 @@
   .tasks-header {
     align-items: flex-start;
 
-    margin-bottom: 28px;
+    margin-bottom: 25px;
   }
 
 
   .tasks-header h1 {
-    font-size: 27px;
+    font-size: 28px;
   }
 
 
-  .tasks-header p {
-    font-size: 12px;
+  .task-navigation {
+    flex-wrap: wrap;
   }
 
 
-  .logout-button {
-    padding: 9px 13px;
+  .task-navigation button {
+    flex: 1;
   }
 
 
   .tasks-container main > button {
     width: 100%;
+  }
 
-    margin-bottom: 14px;
+}
+
+
+@media (max-width: 500px) {
+
+  .task-item {
+    padding: 14px;
+
+    gap: 10px;
+  }
+
+
+  .task-item span {
+    font-size: 13px;
+  }
+
+
+  .delete-button {
+    padding: 7px 9px;
+
+    font-size: 11px;
   }
 
 }

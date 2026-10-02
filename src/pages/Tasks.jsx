@@ -5,12 +5,15 @@ import TaskList from "../components/TaskList";
 import { useTasks } from "../hooks/useTasks";
 import { useAuth } from "../hooks/useAuth";
 
+import useNetwork from "../hooks/useNetwork";
+
 import "./Tasks.css";
 
 
 function Tasks() {
 
   const navigate = useNavigate();
+
 
   const {
     tasks,
@@ -23,6 +26,11 @@ function Tasks() {
     logout,
     user
   } = useAuth();
+
+
+  const {
+    isOnline
+  } = useNetwork();
 
 
   const handleLogout = async () => {
@@ -69,13 +77,48 @@ function Tasks() {
 
       <main>
 
-        <button
-          onClick={() =>
-            navigate("/tasks/new")
-          }
-        >
-          Nueva tarea
-        </button>
+        {!isOnline && (
+
+          <div className="network-warning">
+
+            🔴 Sin conexión a Internet.
+            Las acciones de tareas están deshabilitadas.
+
+          </div>
+
+        )}
+
+
+        <div className="task-navigation">
+
+          <button
+            disabled={!isOnline}
+            onClick={() =>
+              navigate("/tasks/new")
+            }
+          >
+            Nueva tarea
+          </button>
+
+
+          <button
+            onClick={() =>
+              navigate("/contacts")
+            }
+          >
+            Contactos
+          </button>
+
+
+          <button
+            onClick={() =>
+              navigate("/fruits")
+            }
+          >
+            Frutas
+          </button>
+
+        </div>
 
 
         <TaskList
@@ -85,6 +128,8 @@ function Tasks() {
           toggleTask={toggleTask}
 
           deleteTask={deleteTask}
+
+          isOnline={isOnline}
 
         />
 
