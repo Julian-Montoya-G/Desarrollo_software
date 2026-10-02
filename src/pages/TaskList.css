@@ -1,0 +1,28 @@
+.task-list {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+.empty-message {
+  padding: 40px 20px;
+
+  text-align: center;
+
+  color: #91889f;
+
+  font-size: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  border:
+    1px dashed rgba(255, 255, 255, 0.1);
+
+  border-radius: 14px;
+}

@@ -1,0 +1,248 @@
+/* =========================
+   PÁGINA
+========================= */
+
+.task-detail-page {
+  min-height: 100vh;
+
+  padding: 60px 30px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: flex-start;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(99, 102, 241, 0.12),
+      transparent 30%
+    );
+
+  color: var(--text);
+
+  font-family: var(--font);
+}
+
+
+/* =========================
+   TARJETA
+========================= */
+
+.task-detail-card {
+  width: 100%;
+
+  max-width: 850px;
+
+  padding: 40px;
+
+  background: rgba(17, 24, 39, 0.88);
+
+  border: 1px solid var(--border);
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.task-detail-header {
+  margin-bottom: 35px;
+}
+
+
+.task-detail-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: var(--primary);
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+
+.task-detail-header h1 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: var(--font);
+
+  font-size: 38px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  word-break: break-word;
+}
+
+
+/* =========================
+   ESTADO
+========================= */
+
+.task-detail-status {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 20px;
+
+  margin-bottom: 30px;
+
+  background: #111827;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+}
+
+
+.task-detail-status span {
+  color: var(--text-secondary);
+
+  font-size: 14px;
+}
+
+
+.task-detail-status strong {
+  font-size: 14px;
+}
+
+
+.completed-status {
+  color: #22c55e;
+}
+
+
+.pending-status {
+  color: #f59e0b;
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+.task-detail-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 12px;
+}
+
+
+.task-detail-button {
+  padding: 12px 20px;
+
+  border-radius: 9px;
+
+  font-family: var(--font);
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.task-detail-button:hover {
+  transform: translateY(-1px);
+}
+
+
+/* BOTÓN PRINCIPAL */
+
+.task-detail-button.primary {
+  background: var(--primary);
+
+  color: white;
+
+  border: 1px solid var(--primary);
+}
+
+
+.task-detail-button.primary:hover {
+  background: var(--primary-hover);
+}
+
+
+/* BOTÓN SECUNDARIO */
+
+.task-detail-button.secondary {
+  background: transparent;
+
+  color: var(--text-secondary);
+
+  border: 1px solid var(--border);
+}
+
+
+.task-detail-button.secondary:hover {
+  background: #111827;
+
+  color: var(--text);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 650px) {
+
+  .task-detail-page {
+    padding: 30px 16px;
+  }
+
+
+  .task-detail-card {
+    padding: 25px 20px;
+  }
+
+
+  .task-detail-header h1 {
+    font-size: 30px;
+  }
+
+
+  .task-detail-status {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 8px;
+  }
+
+
+  .task-detail-actions {
+    flex-direction: column;
+  }
+
+
+  .task-detail-button {
+    width: 100%;
+  }
+
+}

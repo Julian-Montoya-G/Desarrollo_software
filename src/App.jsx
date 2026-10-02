@@ -1,89 +1,141 @@
-import { useEffect, useState } from "react";
-import ContactForm from "./components/ContactForm";
-import ContactList from "./components/ContactList";
-import Loader from "./components/Loader";
-import contactImage from "./assets/contact-image.jpg";
-import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate
+} from "react-router-dom";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Tasks from "./pages/Tasks";
+import TaskForm from "./pages/TaskForm";
+import TaskDetail from "./pages/TaskDetail";
+import Contacts from "./pages/Contacts";
+import ContactForm from "./pages/ContactForm";
+import ContactDetail from "./pages/ContactDetail";
+import EditContact from "./pages/EditContact";
+import Fruits from "./pages/Fruits";
+import NetworkTest from "./pages/NetworkTest";
+
+
+import ProtectedRoute
+  from "./components/ProtectedRoute";
+
 
 function App() {
-  const [contacts, setContacts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      const initialContacts = [
-        {
-          id: 1,
-          name: "Juan Pérez",
-          phone: "300 123 4567",
-        },
-        {
-          id: 2,
-          name: "Laura Gómez",
-          phone: "310 987 6543",
-        },
-        {
-          id: 3,
-          name: "Carlos Rodríguez",
-          phone: "315 456 7890",
-        },
-      ];
-
-      setContacts(initialContacts);
-      setLoading(false);
-    }, 2000);
-  }, []);
-
-  const addContact = (name, phone) => {
-    const newContact = {
-      id: Date.now(),
-      name,
-      phone,
-    };
-
-    setContacts([...contacts, newContact]);
-  };
-
-  const deleteContact = (id) => {
-    setContacts(
-      contacts.filter((contact) => contact.id !== id)
-    );
-  };
-
-  if (loading) {
-    return <Loader />;
-  }
 
   return (
-    <div className="app">
-      <div className="container">
 
-        <div className="app-header">
-          <img
-            src={contactImage}
-            alt="Aplicación de contactos"
-            className="app-image"
-          />
+    <BrowserRouter>
 
-          <div>
-            <h1>Contactos</h1>
+      <Routes>
 
-            <p className="subtitle">
-              Administra tu lista de contactos
-            </p>
-          </div>
-        </div>
+        {/* Rutas públicas */}
 
-        <ContactForm addContact={addContact} />
-
-        <ContactList
-          contacts={contacts}
-          deleteContact={deleteContact}
+        <Route
+          path="/login"
+          element={<Login />}
         />
 
-      </div>
-    </div>
+        <Route
+          path="/register"
+          element={<Register />}
+        />
+
+        <Route
+            path="/contacts"
+            element={<Contacts />}
+        />
+
+        <Route
+             path="/contacts/new"
+            element={<ContactForm />}
+        />
+
+        <Route
+            path="/contacts/:id"
+            element={<ContactDetail />}
+        />
+
+        <Route
+            path="/contacts/:id/edit"
+            element={<EditContact />}
+        />
+
+        <Route
+            path="/contacts/:id/edit"
+            element={<EditContact />}
+        />
+
+        <Route
+            path="/fruits"
+            element={<Fruits />}
+        />
+
+        <Route
+  path="/network-test"
+  element={<NetworkTest />}
+/>
+
+        {/* Rutas protegidas */}
+
+        <Route element={<ProtectedRoute />}>
+
+          <Route
+            path="/tasks"
+            element={<Tasks />}
+          />
+
+          <Route
+            path="/tasks/new"
+            element={<TaskForm />}
+          />
+
+          <Route
+            path="/tasks/:id"
+            element={<TaskDetail />}
+          />
+
+          <Route
+            path="/tasks/:id/edit"
+            element={<TaskForm />}
+          />
+
+        </Route>
+
+
+        {/* Ruta principal */}
+
+        <Route
+          path="/"
+          element={
+            <Navigate
+              to="/tasks"
+              replace
+            />
+          }
+        />
+
+
+        {/* Ruta inexistente */}
+
+        <Route
+          path="*"
+          element={
+            <Navigate
+              to="/tasks"
+              replace
+            />
+          }
+        />
+
+      </Routes>
+
+    </BrowserRouter>
+
   );
+
 }
+
 
 export default App;
