@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom";
+
 import useNetwork from "../hooks/useNetwork";
+
+import "./NetworkTest.css";
 
 
 function NetworkTest() {
+
+  const navigate = useNavigate();
+
 
   const {
     isOnline
@@ -10,30 +17,113 @@ function NetworkTest() {
 
   return (
 
-    <div className="tasks-container">
+    <div className="network-page">
 
-      <h1>
-        Estado de conexión
-      </h1>
+      <header className="network-header">
+
+        <div>
+
+          <span className="network-label">
+            CHALLENGE 07
+          </span>
+
+          <h1>
+            Conexión de red
+          </h1>
+
+          <p>
+            Consulta el estado actual de la conexión a Internet.
+          </p>
+
+        </div>
 
 
-      <div>
+        <button
+          className="network-back-button"
+          onClick={() =>
+            navigate("/sensors")
+          }
+        >
+          Volver
+        </button>
 
-        {isOnline ? (
+      </header>
+
+
+      <main className="network-content">
+
+        <section className="network-card">
+
+          <div className="network-icon">
+            🌐
+          </div>
+
 
           <h2>
-            🟢 Conectado a Internet
+            Estado de conexión
           </h2>
 
-        ) : (
 
-          <h2>
-            🔴 Sin conexión a Internet
-          </h2>
+          <div
+            className={
+              isOnline
+                ? "network-status online"
+                : "network-status offline"
+            }
+          >
 
-        )}
+            <div className="network-status-icon">
 
-      </div>
+              {isOnline
+                ? "🟢"
+                : "🔴"}
+
+            </div>
+
+
+            <div>
+
+              <strong>
+
+                {isOnline
+                  ? "Conectado a Internet"
+                  : "Sin conexión a Internet"}
+
+              </strong>
+
+
+              <p>
+
+                {isOnline
+                  ? "El dispositivo tiene conexión a Internet."
+                  : "El dispositivo no tiene conexión a Internet."}
+
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div className="network-info">
+
+            <span>
+              Estado actual
+            </span>
+
+            <strong>
+
+              {isOnline
+                ? "ONLINE"
+                : "OFFLINE"}
+
+            </strong>
+
+          </div>
+
+        </section>
+
+      </main>
 
     </div>
 
