@@ -1,0 +1,285 @@
+.sensor-page {
+  min-height: 100vh;
+
+  padding: 48px 7%;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(124, 58, 237, 0.12),
+      transparent 35%
+    ),
+    #f8f7fc;
+}
+
+
+.sensor-header {
+  max-width: 900px;
+
+  margin: 0 auto 45px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+
+.sensor-label {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  color: #7c3aed;
+}
+
+
+.sensor-header h1 {
+  margin: 0;
+
+  font-size: 42px;
+
+  color: #241b35;
+}
+
+
+.sensor-header p {
+  margin-top: 12px;
+
+  font-size: 17px;
+
+  color: #756b82;
+}
+
+
+.sensor-back-button {
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 13px 22px;
+
+  background: #ede9fe;
+
+  color: #6d28d9;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.sensor-back-button:hover {
+  background: #ddd6fe;
+
+  transform: translateY(-2px);
+}
+
+
+.sensor-content {
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+
+.sensor-panel {
+  padding: 40px;
+
+  border: 1px solid #e6def7;
+
+  border-radius: 24px;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  box-shadow:
+    0 15px 40px rgba(76, 29, 149, 0.08);
+
+  text-align: center;
+}
+
+
+.sensor-panel-icon {
+  width: 70px;
+
+  height: 70px;
+
+  margin: 0 auto 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 20px;
+
+  background: #f3e8ff;
+
+  font-size: 34px;
+}
+
+
+.sensor-panel h2 {
+  margin-bottom: 10px;
+
+  color: #2e2142;
+}
+
+
+.sensor-panel > p {
+  max-width: 600px;
+
+  margin: 0 auto 25px;
+
+  color: #7c7189;
+
+  line-height: 1.6;
+}
+
+
+.sensor-action-button {
+  border: none;
+
+  border-radius: 12px;
+
+  padding: 14px 24px;
+
+  background: #7c3aed;
+
+  color: white;
+
+  font-size: 15px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.sensor-action-button:hover {
+  background: #6d28d9;
+
+  transform: translateY(-2px);
+}
+
+
+.sensor-action-button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+
+.sensor-error {
+  margin-top: 20px;
+
+  padding: 14px;
+
+  border-radius: 12px;
+
+  background: #fef2f2;
+
+  color: #b91c1c;
+
+  font-size: 14px;
+}
+
+
+.location-result {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 15px;
+
+  margin-top: 30px;
+
+  text-align: left;
+}
+
+
+.location-item {
+  padding: 18px;
+
+  border-radius: 15px;
+
+  background: #f8f7fc;
+
+  border: 1px solid #ebe5f4;
+}
+
+
+.location-item span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 13px;
+
+  color: #8a7d96;
+}
+
+
+.location-item strong {
+  display: block;
+
+  color: #3b2758;
+
+  font-size: 15px;
+
+  word-break: break-word;
+}
+
+
+@media (max-width: 650px) {
+
+  .sensor-page {
+    padding: 30px 20px;
+  }
+
+
+  .sensor-header {
+    flex-direction: column;
+  }
+
+
+  .sensor-header h1 {
+    font-size: 32px;
+  }
+
+
+  .location-result {
+    grid-template-columns: 1fr;
+  }
+
+
+  .sensor-panel {
+    padding: 25px;
+  }
+
+}
