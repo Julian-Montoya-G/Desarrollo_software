@@ -7,9 +7,11 @@ import {
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+
 import Tasks from "./pages/Tasks";
 import TaskForm from "./pages/TaskForm";
 import TaskDetail from "./pages/TaskDetail";
+
 import Contacts from "./pages/Contacts";
 import ContactForm from "./pages/ContactForm";
 import ContactDetail from "./pages/ContactDetail";
@@ -28,6 +30,12 @@ import FilesystemPage from "./pages/Filesystem";
 import Notifications from "./pages/Notifications";
 import PushNotifications from "./pages/PushNotifications";
 
+import Missions from "./pages/Missions";
+import MissionCamera from "./pages/MissionCamera";
+import MissionMovement from "./pages/MissionMovement";
+import MissionStay from "./pages/MissionStay";
+import Results from "./pages/Results";
+
 import ProtectedRoute
   from "./components/ProtectedRoute";
 
@@ -40,7 +48,9 @@ function App() {
 
       <Routes>
 
-        {/* Rutas públicas */}
+        {/* ========================================
+            RUTAS PÚBLICAS
+        ======================================== */}
 
         <Route
           path="/login"
@@ -53,55 +63,53 @@ function App() {
         />
 
         <Route
-            path="/contacts"
-            element={<Contacts />}
+          path="/contacts"
+          element={<Contacts />}
         />
 
         <Route
-             path="/contacts/new"
-            element={<ContactForm />}
+          path="/contacts/new"
+          element={<ContactForm />}
         />
 
         <Route
-            path="/contacts/:id"
-            element={<ContactDetail />}
+          path="/contacts/:id"
+          element={<ContactDetail />}
         />
 
         <Route
-            path="/contacts/:id/edit"
-            element={<EditContact />}
+          path="/contacts/:id/edit"
+          element={<EditContact />}
         />
 
         <Route
-            path="/contacts/:id/edit"
-            element={<EditContact />}
+          path="/fruits"
+          element={<Fruits />}
         />
 
         <Route
-            path="/fruits"
-            element={<Fruits />}
+          path="/network-test"
+          element={<NetworkTest />}
+        />
+
+
+        {/* ========================================
+            CHALLENGE 07
+        ======================================== */}
+
+        <Route
+          path="/sensors"
+          element={<Sensors />}
         />
 
         <Route
-            path="/network-test"
-            element={<NetworkTest />}
-        />
-
-        {/* Rutas challenge_7*/}
-
-        <Route
-            path="/sensors"
-            element={<Sensors />}
-        />
-
-        <Route 
           path="/sensors/geolocation"
-          element={<Geolocation/>}
+          element={<Geolocation />}
         />
 
         <Route
           path="/sensors/camera"
-          element={<Camera/>}
+          element={<Camera />}
         />
 
         <Route
@@ -111,17 +119,17 @@ function App() {
 
         <Route
           path="/sensors/device"
-          element={<Device/>}
+          element={<Device />}
         />
 
         <Route
           path="/sensors/haptics"
-          element={<Haptics/>}
+          element={<Haptics />}
         />
 
         <Route
           path="/sensors/filesystem"
-          element={<FilesystemPage/>}
+          element={<FilesystemPage />}
         />
 
         <Route
@@ -140,9 +148,15 @@ function App() {
         />
 
 
-        {/* Rutas protegidas */}
+        {/* ========================================
+            RUTAS PROTEGIDAS
+        ======================================== */}
 
         <Route element={<ProtectedRoute />}>
+
+          {/* ======================================
+              TASK MANAGER
+          ====================================== */}
 
           <Route
             path="/tasks"
@@ -164,29 +178,63 @@ function App() {
             element={<TaskForm />}
           />
 
+
+          {/* ======================================
+              PARCIAL 2 - MISIONES
+          ====================================== */}
+
+          <Route
+            path="/missions"
+            element={<Missions />}
+          />
+
+          <Route
+            path="/missions/camera"
+            element={<MissionCamera />}
+          />
+
+          <Route
+            path="/missions/movement"
+            element={<MissionMovement />}
+          />
+
+          <Route
+            path="/missions/stay"
+            element={<MissionStay />}
+          />
+
+          <Route
+            path="/results"
+            element={<Results />}
+          />
+
         </Route>
 
 
-        {/* Ruta principal */}
+        {/* ========================================
+            RUTA PRINCIPAL
+        ======================================== */}
 
         <Route
           path="/"
           element={
             <Navigate
-              to="/tasks"
+              to="/missions"
               replace
             />
           }
         />
 
 
-        {/* Ruta inexistente */}
+        {/* ========================================
+            RUTA INEXISTENTE
+        ======================================== */}
 
         <Route
           path="*"
           element={
             <Navigate
-              to="/tasks"
+              to="/missions"
               replace
             />
           }

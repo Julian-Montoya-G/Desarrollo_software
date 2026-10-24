@@ -15,6 +15,9 @@ import TaskProvider
 import ContactProvider
   from "./contexts/ContactContext";
 
+import MissionProvider
+  from "./contexts/MissionProvider";
+
 
 const container =
   document.getElementById("root");
@@ -34,7 +37,11 @@ root.render(
 
         <TaskProvider>
 
-          <App />
+          <MissionProvider>
+
+            <App />
+
+          </MissionProvider>
 
         </TaskProvider>
 

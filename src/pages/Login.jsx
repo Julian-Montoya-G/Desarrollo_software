@@ -13,7 +13,9 @@ import "./Login.css";
 
 function Login() {
 
-  const navigate = useNavigate();
+  const navigate =
+    useNavigate();
+
 
   const {
     login
@@ -30,31 +32,33 @@ function Login() {
     useState("");
 
 
-  const handleLogin = async (event) => {
+  const handleLogin =
+    async (event) => {
 
-    event.preventDefault();
+      event.preventDefault();
 
-    setError("");
+      setError("");
 
 
-    try {
+      try {
 
-      await login(
-        email,
-        password
-      );
+        await login(
+          email,
+          password
+        );
 
-      navigate("/tasks");
 
-    } catch {
+        navigate("/missions");
 
-      setError(
-        "Correo o contraseña incorrectos."
-      );
+      } catch {
 
-    }
+        setError(
+          "Correo o contraseña incorrectos."
+        );
 
-  };
+      }
+
+    };
 
 
   return (
@@ -63,19 +67,32 @@ function Login() {
 
       <div className="login-card">
 
+        <span className="login-label">
+          PARCIAL 2
+        </span>
+
+
         <h1>
-          Task Manager
+          Misiones
         </h1>
+
+
+        <p className="login-description">
+          Completa las misiones y demuestra
+          las capacidades de tu dispositivo.
+        </p>
 
 
         <form onSubmit={handleLogin}>
 
           <input
             type="email"
-            placeholder="Ingrese su email"
+            placeholder="Ingrese su correo"
             value={email}
             onChange={(event) =>
-              setEmail(event.target.value)
+              setEmail(
+                event.target.value
+              )
             }
             required
           />
@@ -83,17 +100,19 @@ function Login() {
 
           <input
             type="password"
-            placeholder="Ingrese contraseña"
+            placeholder="Ingrese su contraseña"
             value={password}
             onChange={(event) =>
-              setPassword(event.target.value)
+              setPassword(
+                event.target.value
+              )
             }
             required
           />
 
 
           <button type="submit">
-            Login
+            Iniciar sesión
           </button>
 
 
