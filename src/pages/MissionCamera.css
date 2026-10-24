@@ -1,0 +1,231 @@
+.mission-camera-page {
+  min-height: 100vh;
+  padding: 40px 32px;
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 85% 5%,
+      rgba(139, 92, 246, 0.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(124, 58, 237, 0.12),
+      transparent 30%
+    ),
+    #0b0812;
+
+  color: #f5f3ff;
+  font-family: var(--font);
+}
+
+
+.mission-camera-header {
+  width: 100%;
+  max-width: 950px;
+
+  margin: 0 auto 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+
+.mission-camera-label {
+  color: #a78bfa;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+
+.mission-camera-header h1 {
+  margin: 6px 0 0;
+
+  font-size: 36px;
+}
+
+
+.mission-camera-header p {
+  margin: 7px 0 0;
+
+  color: #a9a0b8;
+
+  font-size: 13px;
+}
+
+
+.mission-camera-back {
+  padding: 10px 17px;
+
+  background: rgba(255, 255, 255, 0.03);
+
+  color: #c8bfd4;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.mission-camera-content {
+  width: 100%;
+  max-width: 650px;
+
+  margin: 0 auto;
+}
+
+
+.mission-camera-card {
+  padding: 28px;
+
+  text-align: center;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(139, 92, 246, 0.08),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+}
+
+
+.mission-camera-icon {
+  font-size: 42px;
+
+  margin-bottom: 12px;
+}
+
+
+.mission-camera-card h2 {
+  margin: 0;
+
+  font-size: 22px;
+}
+
+
+.mission-camera-card > p {
+  margin: 9px auto 22px;
+
+  max-width: 480px;
+
+  color: #9990a8;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+.mission-camera-button,
+.mission-save-button {
+  padding: 12px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #7c3aed
+    );
+
+  color: #ffffff;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+
+.mission-camera-button:disabled,
+.mission-save-button:disabled {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+.mission-photo-result {
+  margin-top: 24px;
+
+  padding-top: 22px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.mission-photo-result h3 {
+  margin: 0 0 14px;
+
+  font-size: 15px;
+}
+
+
+.mission-photo-result img {
+  display: block;
+
+  width: 100%;
+  max-height: 420px;
+
+  object-fit: contain;
+
+  margin: 0 auto 18px;
+
+  border-radius: 12px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.mission-camera-error {
+  margin-top: 16px;
+
+  color: #fca5a5;
+
+  font-size: 13px;
+}
+
+
+@media (max-width: 650px) {
+
+  .mission-camera-page {
+    padding: 28px 16px;
+  }
+
+
+  .mission-camera-header {
+    align-items: flex-start;
+  }
+
+
+  .mission-camera-header h1 {
+    font-size: 28px;
+  }
+
+
+  .mission-camera-card {
+    padding: 22px 16px;
+  }
+
+}

@@ -1,0 +1,322 @@
+/* =========================================
+   LOGIN
+========================================= */
+
+.login-container {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  background:
+    radial-gradient(
+      circle at 15% 15%,
+      rgba(139, 92, 246, 0.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 85% 85%,
+      rgba(124, 58, 237, 0.12),
+      transparent 32%
+    ),
+    #f8f7fc;
+
+  font-family: var(--font);
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+
+  box-sizing: border-box;
+
+  padding: 42px;
+
+  background: rgba(255, 255, 255, 0.94);
+
+  border:
+    1px solid rgba(139, 92, 246, 0.12);
+
+  border-radius: 22px;
+
+  box-shadow:
+    0 20px 55px rgba(51, 35, 82, 0.12);
+
+  text-align: left;
+
+  backdrop-filter: blur(12px);
+}
+
+
+/* =========================================
+   LABEL
+========================================= */
+
+.login-label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #8b5cf6;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.login-card h1 {
+  margin: 0;
+
+  color: #211b2d;
+
+  font-family: var(--font);
+
+  font-size: 32px;
+
+  font-weight: 700;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.8px;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.login-description {
+  margin: 9px 0 0;
+
+  color: #81778f;
+
+  font-family: var(--font);
+
+  font-size: 14px;
+
+  font-weight: 400;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================
+   FORM
+========================================= */
+
+.login-card form {
+  margin-top: 30px;
+}
+
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.login-card input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 14px 16px;
+
+  margin-bottom: 14px;
+
+  background: #ffffff;
+
+  color: #211b2d;
+
+  border:
+    1px solid #e3deea;
+
+  border-radius: 10px;
+
+  outline: none;
+
+  font-family: var(--font);
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.login-card input::placeholder {
+  color: #a39aaa;
+}
+
+
+.login-card input:hover {
+  border-color: #cfc5dc;
+}
+
+
+.login-card input:focus {
+  border-color: #8b5cf6;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.login-card button {
+  width: 100%;
+
+  padding: 14px 16px;
+
+  border: none;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8b5cf6,
+      #7c3aed
+    );
+
+  color: #ffffff;
+
+  font-family: var(--font);
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.login-card button:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #7c3aed,
+      #6d28d9
+    );
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 8px 20px rgba(124, 58, 237, 0.22);
+}
+
+
+.login-card button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================
+   REGISTER
+========================================= */
+
+.login-card form button + button {
+  margin-top: 12px;
+
+  background: #f5f1fc;
+
+  color: #7040c5;
+
+  border:
+    1px solid #e6dcf5;
+
+  box-shadow: none;
+}
+
+
+.login-card form button + button:hover {
+  background: #eee7fa;
+
+  color: #6336b5;
+
+  border-color: #d9c9ef;
+
+  box-shadow: none;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.login-error {
+  margin-top: 16px;
+
+  padding: 12px 14px;
+
+  box-sizing: border-box;
+
+  background: rgba(239, 68, 68, 0.07);
+
+  border:
+    1px solid rgba(239, 68, 68, 0.18);
+
+  border-radius: 10px;
+
+  color: #c24141 !important;
+
+  font-family: var(--font);
+
+  font-size: 13px;
+
+  line-height: 1.4;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 480px) {
+
+  .login-container {
+    padding: 16px;
+  }
+
+
+  .login-card {
+    padding: 30px 24px;
+
+    border-radius: 18px;
+  }
+
+
+  .login-card h1 {
+    font-size: 28px;
+  }
+
+}

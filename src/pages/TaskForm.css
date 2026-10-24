@@ -1,0 +1,229 @@
+/* =========================
+   PÁGINA DEL FORMULARIO
+========================= */
+
+.tasks-container {
+  min-height: 100vh;
+
+  padding: 50px 40px;
+
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(99, 102, 241, 0.12),
+      transparent 30%
+    );
+
+  color: var(--text);
+}
+
+
+/* =========================
+   ENCABEZADO
+========================= */
+
+.tasks-header {
+  max-width: 900px;
+
+  margin: 0 auto 45px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.tasks-header h1 {
+  margin: 0;
+
+  color: var(--text);
+
+  font-family: var(--font);
+
+  font-size: 42px;
+
+  font-weight: 700;
+
+  letter-spacing: -1px;
+}
+
+
+/* =========================
+   FORMULARIO
+========================= */
+
+.tasks-container main {
+  width: 100%;
+
+  max-width: 900px;
+
+  margin: 0 auto;
+}
+
+
+.tasks-container form {
+  width: 100%;
+
+  padding: 28px;
+
+  display: flex;
+
+  gap: 12px;
+
+  align-items: center;
+
+  background: rgba(17, 24, 39, 0.85);
+
+  border: 1px solid var(--border);
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.tasks-container form input {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 13px 15px;
+
+  background: #111827;
+
+  color: var(--text);
+
+  border: 1px solid var(--border);
+
+  border-radius: 9px;
+
+  outline: none;
+
+  font-family: var(--font);
+
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.tasks-container form input::placeholder {
+  color: var(--text-secondary);
+}
+
+
+.tasks-container form input:focus {
+  border-color: var(--primary);
+
+  box-shadow:
+    0 0 0 3px rgba(99, 102, 241, 0.12);
+}
+
+
+/* =========================
+   BOTONES
+========================= */
+
+.tasks-container form button {
+  padding: 12px 18px;
+
+  border-radius: 9px;
+
+  border: 1px solid var(--border);
+
+  font-family: var(--font);
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+/* AGREGAR / GUARDAR */
+
+.tasks-container form button[type="submit"] {
+  background: var(--primary);
+
+  color: white;
+
+  border-color: var(--primary);
+}
+
+
+.tasks-container form button[type="submit"]:hover {
+  background: var(--primary-hover);
+
+  transform: translateY(-1px);
+}
+
+
+/* CANCELAR */
+
+.tasks-container form button[type="button"] {
+  background: transparent;
+
+  color: var(--text-secondary);
+}
+
+
+.tasks-container form button[type="button"]:hover {
+  background: var(--surface);
+
+  color: var(--text);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 650px) {
+
+  .tasks-container {
+    padding: 30px 16px;
+  }
+
+
+  .tasks-header {
+    margin-bottom: 30px;
+  }
+
+
+  .tasks-header h1 {
+    font-size: 32px;
+  }
+
+
+  .tasks-container form {
+    flex-direction: column;
+
+    padding: 20px;
+
+    align-items: stretch;
+  }
+
+
+  .tasks-container form input,
+  .tasks-container form button {
+    width: 100%;
+  }
+
+}
