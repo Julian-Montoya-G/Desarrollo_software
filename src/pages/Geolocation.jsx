@@ -1,9 +1,12 @@
+import {
+  useNavigate
+} from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
+import useGeolocation
+  from "../hooks/useGeolocation";
 
-import useGeolocation from "../hooks/useGeolocation";
-
-import MapComponent from "../components/MapComponent";
+import MapComponent
+  from "../components/MapComponent";
 
 import "./Geolocation.css";
 
@@ -16,9 +19,13 @@ function Geolocation() {
 
   const {
     location,
+    path,
     loading,
+    tracking,
     error,
-    getCurrentLocation
+    getCurrentLocation,
+    startTracking,
+    stopTracking
   } = useGeolocation();
 
 
@@ -77,6 +84,10 @@ function Geolocation() {
           </p>
 
 
+          {/* ========================================
+              OBTENER UBICACIÓN
+          ======================================== */}
+
           <button
             className="sensor-action-button"
             onClick={getCurrentLocation}
@@ -90,6 +101,54 @@ function Geolocation() {
           </button>
 
 
+          {/* ========================================
+              CONTROLES DE TRACKING
+          ======================================== */}
+
+          {location && (
+
+            <div
+              className="tracking-actions"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "12px",
+                marginTop: "20px"
+              }}
+            >
+
+              <button
+                className="sensor-action-button"
+                onClick={startTracking}
+                disabled={tracking}
+              >
+
+                {tracking
+                  ? "Seguimiento activo"
+                  : "Iniciar seguimiento"}
+
+              </button>
+
+
+              <button
+                className="sensor-action-button"
+                onClick={stopTracking}
+                disabled={!tracking}
+              >
+
+                Detener seguimiento
+
+              </button>
+
+            </div>
+
+          )}
+
+
+          {/* ========================================
+              ERROR
+          ======================================== */}
+
           {error && (
 
             <div className="sensor-error">
@@ -98,6 +157,10 @@ function Geolocation() {
 
           )}
 
+
+          {/* ========================================
+              INFORMACIÓN DE UBICACIÓN
+          ======================================== */}
 
           {location && (
 
@@ -145,11 +208,29 @@ function Geolocation() {
 
                 </div>
 
+
+                <div className="location-item">
+
+                  <span>
+                    Puntos registrados
+                  </span>
+
+                  <strong>
+                    {path.length}
+                  </strong>
+
+                </div>
+
               </div>
 
 
+              {/* ========================================
+                  MAPA
+              ======================================== */}
+
               <MapComponent
                 location={location}
+                path={path}
               />
 
             </>

@@ -2,14 +2,14 @@ import {
   MapContainer,
   TileLayer,
   Marker,
-  Popup
+  Popup,
+  Polyline
 } from "react-leaflet";
-
-import "leaflet/dist/leaflet.css";
 
 
 function MapComponent({
-  location
+  location,
+  path = []
 }) {
 
   if (!location) {
@@ -35,6 +35,15 @@ function MapComponent({
   ];
 
 
+  const polylinePositions =
+    path.map(
+      (point) => [
+        point.latitude,
+        point.longitude
+      ]
+    );
+
+
   return (
 
     <div className="map-container">
@@ -53,6 +62,15 @@ function MapComponent({
           attribution='&copy; OpenStreetMap contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
+
+
+        {polylinePositions.length > 1 && (
+
+          <Polyline
+            positions={polylinePositions}
+          />
+
+        )}
 
 
         <Marker
