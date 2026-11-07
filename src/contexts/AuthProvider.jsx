@@ -4,65 +4,130 @@ import {
 } from "react";
 
 import {
-  onAuthStateChanged
-} from "firebase/auth";
+  supabase
+} from "../lib/supabase";
 
 import {
-  auth
-} from "../firebase/config";
-
-import {
-  useFirebaseAuth
-} from "../hooks/useFirebaseAuth";
+  useSupabaseAuth
+} from "../hooks/useSupabaseAuth";
 
 import AuthContext from "./AuthContext";
 
 
-function AuthProvider({ children }) {
+function AuthProvider({
+  children
+}) {
 
-  const [user, setUser] = useState(null);
+  const [
+    user,
+    setUser
+  ] = useState(null);
 
-  const [loading, setLoading] = useState(true);
+
+  const [
+    loading,
+    setLoading
+  ] = useState(true);
 
 
   const {
     login,
     register,
     logout
-  } = useFirebaseAuth();
+  } = useSupabaseAuth();
 
 
   useEffect(() => {
 
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (currentUser) => {
+    let mounted = true;
 
-        setUser(currentUser);
 
-        setLoading(false);
+    const loadSession =
+      async () => {
+
+        const {
+          data,
+          error
+        } = await supabase.auth.getSession();
+
+
+        if (error) {
+
+          console.error(
+            "Error obteniendo sesión:",
+            error
+          );
+
+        }
+
+
+        if (mounted) {
+
+          setUser(
+            data?.session?.user ||
+            null
+          );
+
+          setLoading(false);
+
+        }
+
+      };
+
+
+    loadSession();
+
+
+    const {
+      data
+    } = supabase.auth.onAuthStateChange(
+
+      (
+        event,
+        session
+      ) => {
+
+        setUser(
+          session?.user ||
+          null
+        );
 
       }
+
     );
 
 
-    return unsubscribe;
+    return () => {
+
+      mounted = false;
+
+      data.subscription.unsubscribe();
+
+    };
 
   }, []);
 
 
   const value = {
+
     user,
+
     login,
+
     register,
+
     logout,
+
     loading
+
   };
 
 
   return (
 
-    <AuthContext.Provider value={value}>
+    <AuthContext.Provider
+      value={value}
+    >
 
       {children}
 

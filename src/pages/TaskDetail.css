@@ -1,248 +1,330 @@
-/* =========================
-   PÁGINA
-========================= */
+/* ========================================
+   TASK DETAIL
+======================================== */
 
 .task-detail-page {
   min-height: 100vh;
 
-  padding: 60px 30px;
+  padding:
+    60px 30px;
 
-  display: flex;
+  display:
+    flex;
 
-  justify-content: center;
+  justify-content:
+    center;
 
-  align-items: flex-start;
+  align-items:
+    flex-start;
 
   background:
     radial-gradient(
       circle at 15% 10%,
       rgba(99, 102, 241, 0.12),
       transparent 30%
-    );
+    ),
+    var(--bg);
 
-  color: var(--text);
-
-  font-family: var(--font);
+  color:
+    var(--text);
 }
 
 
-/* =========================
+/* ========================================
    TARJETA
-========================= */
+======================================== */
 
 .task-detail-card {
-  width: 100%;
+  width:
+    100%;
 
-  max-width: 850px;
+  max-width:
+    850px;
 
-  padding: 40px;
+  padding:
+    40px;
 
-  background: rgba(17, 24, 39, 0.88);
+  background:
+    rgba(17, 24, 39, 0.88);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
-  border-radius: 16px;
+  border-radius:
+    var(--radius-lg);
 
   box-shadow:
-    0 15px 40px rgba(0, 0, 0, 0.2);
+    var(--shadow);
 }
 
 
-/* =========================
+/* ========================================
    ENCABEZADO
-========================= */
+======================================== */
 
 .task-detail-header {
-  margin-bottom: 35px;
+  margin-bottom:
+    35px;
 }
 
 
 .task-detail-label {
-  display: block;
+  display:
+    block;
 
-  margin-bottom: 10px;
+  margin-bottom:
+    10px;
 
-  color: var(--primary);
+  color:
+    var(--primary-hover);
 
-  font-size: 12px;
+  font-size:
+    12px;
 
-  font-weight: 700;
+  font-weight:
+    700;
 
-  letter-spacing: 1.5px;
+  letter-spacing:
+    1.5px;
 }
 
 
 .task-detail-header h1 {
-  margin: 0;
+  margin:
+    0;
 
-  color: var(--text);
+  color:
+    var(--text);
 
-  font-family: var(--font);
+  font-size:
+    38px;
 
-  font-size: 38px;
+  font-weight:
+    700;
 
-  font-weight: 700;
+  line-height:
+    1.2;
 
-  line-height: 1.2;
-
-  word-break: break-word;
+  word-break:
+    break-word;
 }
 
 
-/* =========================
+/* ========================================
    ESTADO
-========================= */
+======================================== */
 
 .task-detail-status {
-  display: flex;
+  display:
+    flex;
 
-  justify-content: space-between;
+  justify-content:
+    space-between;
 
-  align-items: center;
+  align-items:
+    center;
 
-  padding: 20px;
+  padding:
+    20px;
 
-  margin-bottom: 30px;
+  margin-bottom:
+    30px;
 
-  background: #111827;
+  background:
+    var(--surface);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
-  border-radius: 10px;
+  border-radius:
+    var(--radius-sm);
 }
 
 
 .task-detail-status span {
-  color: var(--text-secondary);
+  color:
+    var(--text-secondary);
 
-  font-size: 14px;
+  font-size:
+    14px;
 }
 
 
 .task-detail-status strong {
-  font-size: 14px;
+  font-size:
+    14px;
 }
 
 
 .completed-status {
-  color: #22c55e;
+  color:
+    var(--success);
 }
 
 
 .pending-status {
-  color: #f59e0b;
+  color:
+    var(--warning);
 }
 
 
-/* =========================
+/* ========================================
    BOTONES
-========================= */
+======================================== */
 
 .task-detail-actions {
-  display: flex;
+  display:
+    flex;
 
-  justify-content: flex-end;
+  justify-content:
+    flex-end;
 
-  gap: 12px;
+  gap:
+    12px;
 }
 
 
 .task-detail-button {
-  padding: 12px 20px;
+  padding:
+    12px 20px;
 
-  border-radius: 9px;
+  border-radius:
+    var(--radius-sm);
 
-  font-family: var(--font);
+  font-size:
+    13px;
 
-  font-size: 13px;
+  font-weight:
+    600;
 
-  font-weight: 600;
-
-  cursor: pointer;
+  cursor:
+    pointer;
 
   transition:
     transform 0.2s ease,
     background 0.2s ease,
-    border-color 0.2s ease;
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 
 .task-detail-button:hover {
-  transform: translateY(-1px);
+  transform:
+    translateY(-1px);
 }
 
 
-/* BOTÓN PRINCIPAL */
+/* ========================================
+   BOTÓN PRINCIPAL
+======================================== */
 
 .task-detail-button.primary {
-  background: var(--primary);
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #7c3aed
+    );
 
-  color: white;
+  color:
+    #ffffff;
 
-  border: 1px solid var(--primary);
+  border:
+    1px solid var(--primary);
+
+  box-shadow:
+    0 6px 18px
+    rgba(99, 102, 241, 0.18);
 }
 
 
 .task-detail-button.primary:hover {
-  background: var(--primary-hover);
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-hover),
+      #7c3aed
+    );
+
+  box-shadow:
+    0 9px 24px
+    rgba(99, 102, 241, 0.25);
 }
 
 
-/* BOTÓN SECUNDARIO */
+/* ========================================
+   BOTÓN SECUNDARIO
+======================================== */
 
 .task-detail-button.secondary {
-  background: transparent;
+  background:
+    transparent;
 
-  color: var(--text-secondary);
+  color:
+    var(--text-secondary);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 }
 
 
 .task-detail-button.secondary:hover {
-  background: #111827;
+  background:
+    var(--surface);
 
-  color: var(--text);
+  color:
+    var(--text);
+
+  border-color:
+    var(--border-light);
 }
 
 
-/* =========================
+/* ========================================
    RESPONSIVE
-========================= */
+======================================== */
 
 @media (max-width: 650px) {
 
   .task-detail-page {
-    padding: 30px 16px;
+    padding:
+      30px 16px;
   }
 
 
   .task-detail-card {
-    padding: 25px 20px;
+    padding:
+      25px 20px;
   }
 
 
   .task-detail-header h1 {
-    font-size: 30px;
+    font-size:
+      30px;
   }
 
 
   .task-detail-status {
-    flex-direction: column;
+    flex-direction:
+      column;
 
-    align-items: flex-start;
+    align-items:
+      flex-start;
 
-    gap: 8px;
+    gap:
+      8px;
   }
 
 
   .task-detail-actions {
-    flex-direction: column;
+    flex-direction:
+      column;
   }
 
 
   .task-detail-button {
-    width: 100%;
+    width:
+      100%;
   }
 
 }

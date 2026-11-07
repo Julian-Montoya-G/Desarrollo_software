@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./index.css";
+
 import {
   createRoot
 } from "react-dom/client";
@@ -17,7 +19,6 @@ import ContactProvider
 
 import MissionProvider
   from "./contexts/MissionProvider";
-
 
 const container =
   document.getElementById("root");

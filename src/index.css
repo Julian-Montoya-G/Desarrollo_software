@@ -1,24 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+
+/* ========================================
+   VARIABLES GLOBALES
+======================================== */
+
 :root {
+
+  /* Fondos */
   --bg: #0b1120;
   --surface: #111827;
   --surface-light: #1e293b;
-  --border: #263449;
 
+  /* Bordes */
+  --border: #263449;
+  --border-light: rgba(255, 255, 255, 0.1);
+  --primary-border: rgba(99, 102, 241, 0.35);
+
+
+  /* Texto */
   --text: #f8fafc;
   --text-secondary: #94a3b8;
+  --text-muted: #64748b;
 
+
+  /* Primario */
   --primary: #6366f1;
   --primary-hover: #818cf8;
   --primary-soft: rgba(99, 102, 241, 0.12);
 
+
+  /* Estados */
   --danger: #ef4444;
+  --danger-soft: rgba(239, 68, 68, 0.1);
+
   --success: #22c55e;
 
+  --warning: #f59e0b;
+
+
+  /* Sombras */
   --shadow:
     0 20px 40px rgba(0, 0, 0, 0.25);
 
+
+  /* Radios */
+  --radius-sm: 9px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+
+
+  /* Tipografía */
   --font:
     'Inter',
     system-ui,
@@ -27,15 +59,33 @@
     'Segoe UI',
     sans-serif;
 
-  font-family: var(--font);
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+  font-family:
+    var(--font);
+
+  color:
+    var(--text);
+
+  background:
+    var(--bg);
+
+  font-synthesis:
+    none;
+
+  text-rendering:
+    optimizeLegibility;
+
+  -webkit-font-smoothing:
+    antialiased;
+
+  -moz-osx-font-smoothing:
+    grayscale;
 }
 
+
+/* ========================================
+   RESET
+======================================== */
 
 * {
   box-sizing: border-box;
@@ -46,12 +96,16 @@ html,
 body,
 #root {
   margin: 0;
+
   min-height: 100%;
+
+  width: 100%;
 }
 
 
 body {
   min-height: 100vh;
+
   background:
     radial-gradient(
       circle at top right,
@@ -62,26 +116,83 @@ body {
 }
 
 
+/* ========================================
+   ELEMENTOS GENERALES
+======================================== */
+
 button,
-input {
-  font-family: inherit;
+input,
+textarea,
+select {
+  font-family:
+    var(--font);
 }
 
 
 button {
-  cursor: pointer;
+  cursor:
+    pointer;
+}
+
+
+button:disabled {
+  cursor:
+    not-allowed;
 }
 
 
 h1,
 h2,
-h3 {
-  margin: 0;
-  color: var(--text);
+h3,
+h4,
+h5,
+h6 {
+  margin:
+    0;
+
+  color:
+    var(--text);
 }
 
 
 p {
-  margin: 0;
-  color: var(--text-secondary);
+  margin:
+    0;
+
+  color:
+    var(--text-secondary);
+}
+
+
+/* ========================================
+   SCROLLBAR
+======================================== */
+
+::-webkit-scrollbar {
+  width:
+    8px;
+
+  height:
+    8px;
+}
+
+
+::-webkit-scrollbar-track {
+  background:
+    var(--bg);
+}
+
+
+::-webkit-scrollbar-thumb {
+  background:
+    #334155;
+
+  border-radius:
+    999px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background:
+    #475569;
 }

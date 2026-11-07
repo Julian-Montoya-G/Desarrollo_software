@@ -1,6 +1,6 @@
-/* =========================
-   PÁGINA DEL FORMULARIO
-========================= */
+/* ========================================
+   TASK FORM
+======================================== */
 
 .tasks-container {
   min-height: 100vh;
@@ -12,15 +12,17 @@
       circle at 85% 10%,
       rgba(99, 102, 241, 0.12),
       transparent 30%
-    );
+    ),
+    var(--bg);
 
-  color: var(--text);
+  color:
+    var(--text);
 }
 
 
-/* =========================
+/* ========================================
    ENCABEZADO
-========================= */
+======================================== */
 
 .tasks-header {
   max-width: 900px;
@@ -32,15 +34,16 @@
   align-items: center;
 
   justify-content: space-between;
+
+  gap: 20px;
 }
 
 
 .tasks-header h1 {
   margin: 0;
 
-  color: var(--text);
-
-  font-family: var(--font);
+  color:
+    var(--text);
 
   font-size: 42px;
 
@@ -50,9 +53,9 @@
 }
 
 
-/* =========================
-   FORMULARIO
-========================= */
+/* ========================================
+   CONTENIDO
+======================================== */
 
 .tasks-container main {
   width: 100%;
@@ -63,6 +66,10 @@
 }
 
 
+/* ========================================
+   FORMULARIO
+======================================== */
+
 .tasks-container form {
   width: 100%;
 
@@ -70,160 +77,223 @@
 
   display: flex;
 
-  gap: 12px;
-
   align-items: center;
 
-  background: rgba(17, 24, 39, 0.85);
+  gap: 12px;
 
-  border: 1px solid var(--border);
+  background:
+    rgba(17, 24, 39, 0.88);
 
-  border-radius: 14px;
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-md);
 
   box-shadow:
-    0 12px 30px rgba(0, 0, 0, 0.18);
+    0 12px 30px
+    rgba(0, 0, 0, 0.18);
 }
 
 
-/* =========================
+/* ========================================
    INPUT
-========================= */
+======================================== */
 
 .tasks-container form input {
   flex: 1;
 
   min-width: 0;
 
-  padding: 13px 15px;
+  padding:
+    13px 15px;
 
-  background: #111827;
+  background:
+    var(--surface);
 
-  color: var(--text);
+  color:
+    var(--text);
 
-  border: 1px solid var(--border);
+  border:
+    1px solid var(--border);
 
-  border-radius: 9px;
+  border-radius:
+    var(--radius-sm);
 
-  outline: none;
+  outline:
+    none;
 
-  font-family: var(--font);
-
-  font-size: 14px;
+  font-size:
+    14px;
 
   transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.tasks-container form input::placeholder {
+  color:
+    var(--text-muted);
+}
+
+
+.tasks-container form input:hover {
+  border-color:
+    #3b4a61;
+}
+
+
+.tasks-container form input:focus {
+  border-color:
+    var(--primary);
+
+  background:
+    var(--surface-light);
+
+  box-shadow:
+    0 0 0 3px var(--primary-soft);
+}
+
+
+/* ========================================
+   BOTONES
+======================================== */
+
+.tasks-container form button {
+  padding:
+    12px 18px;
+
+  border-radius:
+    var(--radius-sm);
+
+  border:
+    1px solid var(--border);
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
     border-color 0.2s ease,
     box-shadow 0.2s ease;
 }
 
 
-.tasks-container form input::placeholder {
-  color: var(--text-secondary);
-}
-
-
-.tasks-container form input:focus {
-  border-color: var(--primary);
-
-  box-shadow:
-    0 0 0 3px rgba(99, 102, 241, 0.12);
-}
-
-
-/* =========================
-   BOTONES
-========================= */
-
-.tasks-container form button {
-  padding: 12px 18px;
-
-  border-radius: 9px;
-
-  border: 1px solid var(--border);
-
-  font-family: var(--font);
-
-  font-size: 13px;
-
-  font-weight: 600;
-
-  cursor: pointer;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    border-color 0.2s ease;
-}
-
-
-/* AGREGAR / GUARDAR */
+/* ========================================
+   AGREGAR / GUARDAR
+======================================== */
 
 .tasks-container form button[type="submit"] {
-  background: var(--primary);
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary),
+      #7c3aed
+    );
 
-  color: white;
+  color:
+    #ffffff;
 
-  border-color: var(--primary);
+  border-color:
+    var(--primary);
+
+  box-shadow:
+    0 6px 18px
+    rgba(99, 102, 241, 0.18);
 }
 
 
 .tasks-container form button[type="submit"]:hover {
-  background: var(--primary-hover);
+  background:
+    linear-gradient(
+      135deg,
+      var(--primary-hover),
+      #7c3aed
+    );
 
-  transform: translateY(-1px);
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 9px 24px
+    rgba(99, 102, 241, 0.25);
 }
 
 
-/* CANCELAR */
+/* ========================================
+   CANCELAR
+======================================== */
 
 .tasks-container form button[type="button"] {
-  background: transparent;
+  background:
+    transparent;
 
-  color: var(--text-secondary);
+  color:
+    var(--text-secondary);
 }
 
 
 .tasks-container form button[type="button"]:hover {
-  background: var(--surface);
+  background:
+    var(--surface);
 
-  color: var(--text);
+  color:
+    var(--text);
 
-  transform: translateY(-1px);
+  border-color:
+    var(--border-light);
+
+  transform:
+    translateY(-1px);
 }
 
 
-/* =========================
+/* ========================================
    RESPONSIVE
-========================= */
+======================================== */
 
 @media (max-width: 650px) {
 
   .tasks-container {
-    padding: 30px 16px;
+    padding:
+      30px 16px;
   }
 
 
   .tasks-header {
-    margin-bottom: 30px;
+    margin-bottom:
+      30px;
   }
 
 
   .tasks-header h1 {
-    font-size: 32px;
+    font-size:
+      32px;
   }
 
 
   .tasks-container form {
-    flex-direction: column;
+    flex-direction:
+      column;
 
-    padding: 20px;
+    padding:
+      20px;
 
-    align-items: stretch;
+    align-items:
+      stretch;
   }
 
 
   .tasks-container form input,
   .tasks-container form button {
-    width: 100%;
+    width:
+      100%;
   }
 
 }

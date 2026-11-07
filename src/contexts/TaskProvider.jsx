@@ -4,21 +4,12 @@ import {
 } from "react";
 
 import {
-  onValue,
-  push,
-  ref,
-  set,
-  update,
-  remove
-} from "firebase/database";
+  supabase
+} from "../lib/supabase";
 
 import {
   useAuth
 } from "../hooks/useAuth";
-
-import {
-  realtimeDb
-} from "../firebase/config";
 
 import TaskContext from "./TaskContext";
 
@@ -32,83 +23,160 @@ function TaskProvider({
   } = useAuth();
 
 
-  const [tasks, setTasks] =
-    useState([]);
+  const [
+    tasks,
+    setTasks
+  ] = useState([]);
 
 
-  const [loading, setLoading] =
-    useState(true);
+  const [
+    loading,
+    setLoading
+  ] = useState(true);
+
 
 
   useEffect(() => {
 
     if (!user) {
 
+      setTasks([]);
+
+      setLoading(false);
+
       return;
 
     }
 
 
-    const tasksReference =
-      ref(
-        realtimeDb,
-        `tasks/${user.uid}`
-      );
+    let mounted = true;
 
 
-    const unsubscribe =
-      onValue(
-        tasksReference,
-        (snapshot) => {
+    const loadTasks =
+      async () => {
 
-          const data =
-            snapshot.val();
+        setLoading(true);
 
 
-          if (!data) {
+        const {
+          data,
+          error
+        } = await supabase
 
-            setTasks([]);
+          .from("tasks")
 
-            setLoading(false);
+          .select(
+            "id, title, completed, user_id, created_at"
+          )
 
-            return;
+          .eq(
+            "user_id",
+            user.id
+          )
 
-          }
-
-
-          const loadedTasks =
-            Object.entries(
-              data
-            ).map(
-              ([id, task]) => ({
-
-                id,
-
-                ...task
-
-              })
-            );
-
-
-          setTasks(
-            loadedTasks
+          .order(
+            "created_at",
+            {
+              ascending: true
+            }
           );
 
 
+        if (error) {
+
+          console.error(
+            "Error cargando tareas:",
+            error
+          );
+
+          if (mounted) {
+
+            setTasks([]);
+
+          }
+
           setLoading(false);
 
+          return;
+
         }
-      );
+
+
+        if (mounted) {
+
+          setTasks(
+            data || []
+          );
+
+        }
+
+
+        setLoading(false);
+
+      };
+
+
+    loadTasks();
+
+
+    /*
+    ========================================
+    REALTIME
+    ========================================
+    */
+
+    const channel =
+      supabase
+
+        .channel(
+          `tasks-${user.id}`
+        )
+
+        .on(
+
+          "postgres_changes",
+
+          {
+            event: "*",
+
+            schema: "public",
+
+            table: "tasks",
+
+            filter:
+              `user_id=eq.${user.id}`
+
+          },
+
+          () => {
+
+            loadTasks();
+
+          }
+
+        )
+
+        .subscribe();
 
 
     return () => {
 
-      unsubscribe();
+      mounted = false;
+
+      supabase.removeChannel(
+        channel
+      );
 
     };
 
   }, [user]);
 
+
+  /*
+  ========================================
+  CREAR TAREA
+  ========================================
+  */
 
   const addTask =
     async (
@@ -124,34 +192,83 @@ function TaskProvider({
       }
 
 
-      const tasksReference =
-        ref(
-          realtimeDb,
-          `tasks/${user.uid}`
+      const cleanTitle =
+        title.trim();
+
+
+      if (!cleanTitle) {
+
+        throw new Error(
+          "El título de la tarea es obligatorio."
         );
 
-
-      const newTaskReference =
-        push(
-          tasksReference
-        );
+      }
 
 
-      await set(
-        newTaskReference,
-        {
+      const {
+        data,
+        error
+      } = await supabase
+
+        .from("tasks")
+
+        .insert({
 
           title:
-            title.trim(),
+            cleanTitle,
 
           completed:
-            false
+            false,
 
-        }
+          user_id:
+            user.id
+
+        })
+
+        .select()
+
+        .single();
+
+
+      if (error) {
+
+        console.error(
+          "Error creando tarea:",
+          error
+        );
+
+        throw error;
+
+      }
+
+
+      /*
+      Realtime normalmente actualizará
+      la lista automáticamente.
+
+      Agregamos también la tarea
+      inmediatamente para que la
+      interfaz responda rápido.
+      */
+
+      setTasks(
+        (currentTasks) => [
+
+          ...currentTasks,
+
+          data
+
+        ]
       );
 
     };
 
+
+  /*
+  ========================================
+  ACTUALIZAR TAREA
+  ========================================
+  */
 
   const updateTask =
     async (
@@ -168,25 +285,84 @@ function TaskProvider({
       }
 
 
-      const taskReference =
-        ref(
-          realtimeDb,
-          `tasks/${user.uid}/${id}`
+      const cleanTitle =
+        title.trim();
+
+
+      if (!cleanTitle) {
+
+        throw new Error(
+          "El título de la tarea es obligatorio."
         );
 
+      }
 
-      await update(
-        taskReference,
-        {
+
+      const {
+        data,
+        error
+      } = await supabase
+
+        .from("tasks")
+
+        .update({
 
           title:
-            title.trim()
+            cleanTitle
 
-        }
+        })
+
+        .eq(
+          "id",
+          id
+        )
+
+        .eq(
+          "user_id",
+          user.id
+        )
+
+        .select()
+
+        .single();
+
+
+      if (error) {
+
+        console.error(
+          "Error actualizando tarea:",
+          error
+        );
+
+        throw error;
+
+      }
+
+
+      setTasks(
+        (currentTasks) =>
+
+          currentTasks.map(
+            (task) =>
+
+              task.id === id
+
+                ? data
+
+                : task
+
+          )
+
       );
 
     };
 
+
+  /*
+  ========================================
+  COMPLETAR / DESCOMPLETAR
+  ========================================
+  */
 
   const toggleTask =
     async (
@@ -216,25 +392,71 @@ function TaskProvider({
       }
 
 
-      const taskReference =
-        ref(
-          realtimeDb,
-          `tasks/${user.uid}/${id}`
-        );
+      const {
+        data,
+        error
+      } = await supabase
 
+        .from("tasks")
 
-      await update(
-        taskReference,
-        {
+        .update({
 
           completed:
             !currentTask.completed
 
-        }
+        })
+
+        .eq(
+          "id",
+          id
+        )
+
+        .eq(
+          "user_id",
+          user.id
+        )
+
+        .select()
+
+        .single();
+
+
+      if (error) {
+
+        console.error(
+          "Error cambiando estado de tarea:",
+          error
+        );
+
+        throw error;
+
+      }
+
+
+      setTasks(
+        (currentTasks) =>
+
+          currentTasks.map(
+            (task) =>
+
+              task.id === id
+
+                ? data
+
+                : task
+
+          )
+
       );
 
     };
 
+
+  /*
+  ========================================
+  ELIMINAR TAREA
+  ========================================
+  */
 
   const deleteTask =
     async (
@@ -250,19 +472,55 @@ function TaskProvider({
       }
 
 
-      const taskReference =
-        ref(
-          realtimeDb,
-          `tasks/${user.uid}/${id}`
+      const {
+        error
+      } = await supabase
+
+        .from("tasks")
+
+        .delete()
+
+        .eq(
+          "id",
+          id
+        )
+
+        .eq(
+          "user_id",
+          user.id
         );
 
 
-      await remove(
-        taskReference
+      if (error) {
+
+        console.error(
+          "Error eliminando tarea:",
+          error
+        );
+
+        throw error;
+
+      }
+
+
+      setTasks(
+        (currentTasks) =>
+
+          currentTasks.filter(
+            (task) =>
+              task.id !== id
+          )
+
       );
 
     };
 
+
+  /*
+  ========================================
+  CONTEXTO
+  ========================================
+  */
 
   const value = {
 

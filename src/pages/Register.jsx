@@ -48,9 +48,15 @@ function Register() {
 
       navigate("/tasks");
 
-    } catch {
+        } catch (error) {
+
+      console.error(
+        "Error registrando usuario en Supabase:",
+        error
+      );
 
       setError(
+        error?.message ||
         "No fue posible crear la cuenta."
       );
 

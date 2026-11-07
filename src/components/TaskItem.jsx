@@ -8,8 +8,7 @@ import "../pages/TaskItem.css";
 function TaskItem({
   task,
   toggleTask,
-  deleteTask,
-  isOnline
+  deleteTask
 }) {
 
   const navigate =
@@ -25,8 +24,6 @@ function TaskItem({
         type="checkbox"
 
         checked={task.completed}
-
-        disabled={!isOnline}
 
         onChange={() =>
           toggleTask(
@@ -67,8 +64,6 @@ function TaskItem({
       <button
 
         className="delete-button"
-
-        disabled={!isOnline}
 
         onClick={() =>
           deleteTask(

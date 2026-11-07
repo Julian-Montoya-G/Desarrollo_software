@@ -25,8 +25,10 @@ function Login() {
   const [email, setEmail] =
     useState("");
 
+
   const [password, setPassword] =
     useState("");
+
 
   const [error, setError] =
     useState("");
@@ -50,10 +52,11 @@ function Login() {
 
         navigate("/missions");
 
+
       } catch {
 
         setError(
-          "Correo o contraseña incorrectos."
+          "Correo o contraseÃ±a incorrectos."
         );
 
       }
@@ -100,7 +103,7 @@ function Login() {
 
           <input
             type="password"
-            placeholder="Ingrese su contraseña"
+            placeholder="Ingrese su contraseÃ±a"
             value={password}
             onChange={(event) =>
               setPassword(
@@ -112,7 +115,7 @@ function Login() {
 
 
           <button type="submit">
-            Iniciar sesión
+            Iniciar sesiÃ³n
           </button>
 
 

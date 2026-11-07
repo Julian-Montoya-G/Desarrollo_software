@@ -28,11 +28,18 @@ function Tasks() {
 
   const handleLogout = async () => {
 
-    await logout();
+  await logout();
 
-    navigate("/login");
+  navigate(
+    "/task-login",
+    {
+      state: {
+        from: "/tasks"
+      }
+    }
+  );
 
-  };
+};
 
 
   return (
@@ -41,7 +48,7 @@ function Tasks() {
 
       <header className="tasks-header">
 
-        <div>
+        <div className="tasks-header-info">
 
           <h1>
             Task Manager
@@ -58,12 +65,26 @@ function Tasks() {
         </div>
 
 
-        <button
-          className="logout-button"
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
+        <div className="tasks-header-actions">
+
+          <button
+            className="profile-button"
+            onClick={() =>
+              navigate("/profile")
+            }
+          >
+            Mi perfil
+          </button>
+
+
+          <button
+            className="logout-button"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+
+        </div>
 
       </header>
 
