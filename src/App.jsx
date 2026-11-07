@@ -268,7 +268,7 @@ function App() {
           path="/"
           element={
             <Navigate
-              to="/missions"
+              to="/sensors"
               replace
             />
           }
@@ -283,7 +283,7 @@ function App() {
           path="*"
           element={
             <Navigate
-              to="/missions"
+              to="/sensors"
               replace
             />
           }

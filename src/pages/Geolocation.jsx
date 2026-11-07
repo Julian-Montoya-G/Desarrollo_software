@@ -1,13 +1,17 @@
+
 import { useNavigate } from "react-router-dom";
 
 import useGeolocation from "../hooks/useGeolocation";
+
+import MapComponent from "../components/MapComponent";
 
 import "./Geolocation.css";
 
 
 function Geolocation() {
 
-  const navigate = useNavigate();
+  const navigate =
+    useNavigate();
 
 
   const {
@@ -97,49 +101,58 @@ function Geolocation() {
 
           {location && (
 
-            <div className="location-result">
+            <>
 
-              <div className="location-item">
+              <div className="location-result">
 
-                <span>
-                  Latitud
-                </span>
+                <div className="location-item">
 
-                <strong>
-                  {location.latitude}
-                </strong>
+                  <span>
+                    Latitud
+                  </span>
+
+                  <strong>
+                    {location.latitude}
+                  </strong>
+
+                </div>
+
+
+                <div className="location-item">
+
+                  <span>
+                    Longitud
+                  </span>
+
+                  <strong>
+                    {location.longitude}
+                  </strong>
+
+                </div>
+
+
+                <div className="location-item">
+
+                  <span>
+                    Precisión
+                  </span>
+
+                  <strong>
+                    {location.accuracy
+                      ? `${location.accuracy.toFixed(2)} m`
+                      : "No disponible"}
+                  </strong>
+
+                </div>
 
               </div>
 
 
-              <div className="location-item">
+              <MapComponent
+                location={location}
+              />
 
-                <span>
-                  Longitud
-                </span>
-
-                <strong>
-                  {location.longitude}
-                </strong>
-
-              </div>
-
-
-              <div className="location-item">
-
-                <span>
-                  Precisión
-                </span>
-
-                <strong>
-                  {location.accuracy
-                    ? `${location.accuracy.toFixed(2)} m`
-                    : "No disponible"}
-                </strong>
-
-              </div>
-
-            </div>
+            </>
 
           )}
 

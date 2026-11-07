@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 
 import { Geolocation } from "@capacitor/geolocation";
@@ -8,8 +9,10 @@ function useGeolocation() {
   const [location, setLocation] =
     useState(null);
 
+
   const [loading, setLoading] =
     useState(false);
+
 
   const [error, setError] =
     useState("");
@@ -24,6 +27,12 @@ function useGeolocation() {
 
 
       try {
+
+        /*
+        ========================================
+        VERIFICAR PERMISOS
+        ========================================
+        */
 
         const permission =
           await Geolocation.checkPermissions();
@@ -50,9 +59,32 @@ function useGeolocation() {
         }
 
 
-        const position =
-          await Geolocation.getCurrentPosition();
+        /*
+        ========================================
+        OBTENER UBICACIÓN
+        ========================================
+        */
 
+        const position =
+          await Geolocation.getCurrentPosition({
+
+            enableHighAccuracy:
+              true,
+
+            timeout:
+              30000,
+
+            maximumAge:
+              10000
+
+          });
+
+
+        /*
+        ========================================
+        GUARDAR COORDENADAS
+        ========================================
+        */
 
         setLocation(
           position.coords
@@ -68,7 +100,7 @@ function useGeolocation() {
 
 
         setError(
-          error.message ||
+          error?.message ||
           "No se pudo obtener la ubicación."
         );
 
