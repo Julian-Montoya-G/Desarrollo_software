@@ -282,4 +282,119 @@
     padding: 25px;
   }
 
+  /* ========================================
+   SENSOR DE MOVIMIENTO
+======================================== */
+
+.motion-status {
+  width: 100%;
+  max-width: 500px;
+
+  margin: 25px auto 0;
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  background: #f8f7fc;
+
+  border: 1px solid #ebe5f4;
+
+  border-radius: 15px;
+
+  text-align: left;
+}
+
+
+.motion-status-label {
+  color: #8a7d96;
+
+  font-size: 13px;
+
+  font-weight: 500;
+}
+
+
+.motion-status strong {
+  font-size: 16px;
+}
+
+
+.motion-moving {
+  color: #16a34a;
+}
+
+
+.motion-stable {
+  color: #6b6475;
+}
+
+
+.motion-intensity {
+  color: #8a7d96;
+
+  font-size: 13px;
+}
+
+
+/* ========================================
+   ACELERACIÓN
+======================================== */
+
+.acceleration-result {
+  width: 100%;
+  max-width: 500px;
+
+  margin: 15px auto 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 12px;
+
+  text-align: left;
+}
+
+
+.acceleration-item {
+  padding: 15px;
+
+  background: #f8f7fc;
+
+  border: 1px solid #ebe5f4;
+
+  border-radius: 14px;
+}
+
+
+.acceleration-item span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #8a7d96;
+
+  font-size: 12px;
+}
+
+
+.acceleration-item strong {
+  color: #3b2758;
+
+  font-size: 15px;
+}
+
+
+@media (max-width: 650px) {
+
+  .acceleration-result {
+    grid-template-columns: 1fr;
+  }
+
+}
+
 }

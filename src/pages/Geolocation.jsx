@@ -5,6 +5,9 @@ import {
 import useGeolocation
   from "../hooks/useGeolocation";
 
+import useMotion
+  from "../hooks/useMotion";
+
 import MapComponent
   from "../components/MapComponent";
 
@@ -27,6 +30,14 @@ function Geolocation() {
     startTracking,
     stopTracking
   } = useGeolocation();
+
+
+  const {
+    acceleration,
+    isMoving,
+    movementIntensity,
+    error: motionError
+  } = useMotion();
 
 
   return (
@@ -102,7 +113,7 @@ function Geolocation() {
 
 
           {/* ========================================
-              CONTROLES DE TRACKING
+              TRACKING
           ======================================== */}
 
           {location && (
@@ -135,9 +146,7 @@ function Geolocation() {
                 onClick={stopTracking}
                 disabled={!tracking}
               >
-
                 Detener seguimiento
-
               </button>
 
             </div>
@@ -146,13 +155,114 @@ function Geolocation() {
 
 
           {/* ========================================
-              ERROR
+              ESTADO DEL MOVIMIENTO
+          ======================================== */}
+
+          <div className="motion-status">
+
+            <span className="motion-status-label">
+              Sensor de movimiento
+            </span>
+
+
+            <strong
+              className={
+                isMoving
+                  ? "motion-moving"
+                  : "motion-stable"
+              }
+            >
+
+              {isMoving
+                ? "🟢 En movimiento"
+                : "⚪ Dispositivo estable"}
+
+            </strong>
+
+
+            <span className="motion-intensity">
+              Intensidad:
+              {" "}
+              {movementIntensity.toFixed(2)}
+              {" "}
+              m/s²
+            </span>
+
+          </div>
+
+
+          {/* ========================================
+              ACELERACIÓN
+          ======================================== */}
+
+          {acceleration && (
+
+            <div className="acceleration-result">
+
+              <div className="acceleration-item">
+
+                <span>
+                  Eje X
+                </span>
+
+                <strong>
+                  {acceleration.x?.toFixed(2) || "0.00"}
+                </strong>
+
+              </div>
+
+
+              <div className="acceleration-item">
+
+                <span>
+                  Eje Y
+                </span>
+
+                <strong>
+                  {acceleration.y?.toFixed(2) || "0.00"}
+                </strong>
+
+              </div>
+
+
+              <div className="acceleration-item">
+
+                <span>
+                  Eje Z
+                </span>
+
+                <strong>
+                  {acceleration.z?.toFixed(2) || "0.00"}
+                </strong>
+
+              </div>
+
+            </div>
+
+          )}
+
+
+          {/* ========================================
+              ERROR GPS
           ======================================== */}
 
           {error && (
 
             <div className="sensor-error">
               {error}
+            </div>
+
+          )}
+
+
+          {/* ========================================
+              ERROR MOTION
+          ======================================== */}
+
+          {motionError && (
+
+            <div className="sensor-error">
+              {motionError}
             </div>
 
           )}
@@ -249,3 +359,4 @@ function Geolocation() {
 
 
 export default Geolocation;
+
