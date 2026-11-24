@@ -52,6 +52,8 @@ import TaskProtectedRoute
 
 import Profile from "./pages/Profile";
 
+import Giphy from "./pages/Giphy";
+
 function App() {
 
   return (
@@ -116,6 +118,11 @@ function App() {
           path="/network-test"
           element={<NetworkTest />}
         />
+
+        <Route
+  path="/giphy"
+  element={<Giphy />}
+/>
 
 
         {/* ========================================
