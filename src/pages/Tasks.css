@@ -1,0 +1,443 @@
+/* ========================================
+   TASK MANAGER
+======================================== */
+
+.tasks-container {
+  min-height: 100vh;
+
+  padding:
+    40px 32px;
+
+  background:
+    radial-gradient(
+      circle at 85% 5%,
+      rgba(139, 92, 246, 0.18),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 10% 90%,
+      rgba(124, 58, 237, 0.12),
+      transparent 30%
+    ),
+    var(--bg);
+
+  color:
+    var(--text);
+}
+
+
+/* ========================================
+   HEADER
+======================================== */
+
+.tasks-header {
+  width:
+    100%;
+
+  max-width:
+    950px;
+
+  margin:
+    0 auto 32px;
+
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    space-between;
+
+  gap:
+    20px;
+}
+
+
+.tasks-header-info {
+  min-width:
+    0;
+}
+
+
+.tasks-header h1 {
+  margin:
+    0;
+
+  color:
+    var(--text);
+
+  font-size:
+    36px;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    -1px;
+}
+
+
+.tasks-header p {
+  margin:
+    7px 0 0;
+
+  color:
+    var(--text-secondary);
+
+  font-size:
+    13px;
+}
+
+
+/* ========================================
+   ACCIONES DEL HEADER
+======================================== */
+
+.tasks-header-actions {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    10px;
+
+  flex-shrink:
+    0;
+}
+
+
+/* ========================================
+   PERFIL
+======================================== */
+
+.profile-button {
+  padding:
+    10px 17px;
+
+  background:
+    rgba(99, 102, 241, 0.08);
+
+  color:
+    #c4b5fd;
+
+  border:
+    1px solid rgba(99, 102, 241, 0.25);
+
+  border-radius:
+    10px;
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.profile-button:hover {
+  background:
+    rgba(99, 102, 241, 0.16);
+
+  color:
+    #ddd6fe;
+
+  border-color:
+    rgba(99, 102, 241, 0.45);
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* ========================================
+   LOGOUT
+======================================== */
+
+.logout-button {
+  padding:
+    10px 17px;
+
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  color:
+    var(--text-secondary);
+
+  border:
+    1px solid var(--border-light);
+
+  border-radius:
+    10px;
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.logout-button:hover {
+  background:
+    var(--danger-soft);
+
+  color:
+    #fca5a5;
+
+  border-color:
+    rgba(239, 68, 68, 0.35);
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* ========================================
+   CONTENIDO
+======================================== */
+
+.tasks-container main {
+  width:
+    100%;
+
+  max-width:
+    950px;
+
+  margin:
+    0 auto;
+}
+
+
+/* ========================================
+   AVISO DE RED
+======================================== */
+
+.network-warning {
+  width:
+    100%;
+
+  box-sizing:
+    border-box;
+
+  margin-bottom:
+    18px;
+
+  padding:
+    13px 16px;
+
+  background:
+    var(--danger-soft);
+
+  color:
+    #fca5a5;
+
+  border:
+    1px solid rgba(239, 68, 68, 0.25);
+
+  border-radius:
+    12px;
+
+  font-size:
+    13px;
+
+  font-weight:
+    500;
+}
+
+
+/* ========================================
+   NAVEGACIÓN
+======================================== */
+
+.task-navigation {
+  display:
+    flex;
+
+  flex-wrap:
+    wrap;
+
+  gap:
+    10px;
+
+  margin-bottom:
+    24px;
+}
+
+
+.task-navigation button {
+  padding:
+    11px 16px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color:
+    var(--text-secondary);
+
+  border:
+    1px solid var(--border-light);
+
+  border-radius:
+    10px;
+
+  font-size:
+    13px;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.task-navigation button:hover {
+  background:
+    var(--primary-soft);
+
+  color:
+    #ddd6fe;
+
+  border-color:
+    var(--primary-border);
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* ========================================
+   BOTÓN DESHABILITADO
+======================================== */
+
+.task-navigation button:disabled,
+.logout-button:disabled,
+.profile-button:disabled {
+  opacity:
+    0.4;
+
+  cursor:
+    not-allowed;
+
+  transform:
+    none;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 700px) {
+
+  .tasks-container {
+    padding:
+      28px 16px;
+  }
+
+
+  .tasks-header {
+    align-items:
+      flex-start;
+
+    margin-bottom:
+      25px;
+  }
+
+
+  .tasks-header-actions {
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+  }
+
+
+  .profile-button,
+  .logout-button {
+    width:
+      100%;
+  }
+
+
+  .tasks-header h1 {
+    font-size:
+      28px;
+  }
+
+
+  .task-navigation {
+    flex-wrap:
+      wrap;
+  }
+
+
+  .task-navigation button {
+    flex:
+      1 1 auto;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .tasks-header {
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+  }
+
+
+  .tasks-header-actions {
+    width:
+      100%;
+
+    flex-direction:
+      row;
+  }
+
+
+  .profile-button,
+  .logout-button {
+    flex:
+      1;
+  }
+
+
+  .task-navigation button {
+    width:
+      100%;
+  }
+
+}

@@ -1,0 +1,207 @@
+.sensors-page {
+  min-height: 100vh;
+  padding: 48px 7%;
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(124, 58, 237, 0.12),
+      transparent 35%
+    ),
+    #f8f7fc;
+  box-sizing: border-box;
+}
+
+
+.sensors-header {
+  max-width: 1200px;
+  margin: 0 auto 45px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+
+.sensors-label {
+  display: inline-block;
+
+  margin-bottom: 10px;
+
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  color: #7c3aed;
+}
+
+
+.sensors-header h1 {
+  margin: 0;
+
+  font-size: 42px;
+  line-height: 1.1;
+
+  color: #241b35;
+}
+
+
+.sensors-header p {
+  margin-top: 12px;
+
+  font-size: 17px;
+
+  color: #756b82;
+}
+
+
+.sensors-back-button {
+  border: none;
+  border-radius: 12px;
+
+  padding: 13px 22px;
+
+  background: #ede9fe;
+  color: #6d28d9;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.sensors-back-button:hover {
+  background: #ddd6fe;
+  transform: translateY(-2px);
+}
+
+
+.sensors-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+.sensors-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+
+.sensor-card {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 18px;
+
+  width: 100%;
+
+  min-height: 150px;
+
+  padding: 25px;
+
+  border: 1px solid #e6def7;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 10px 30px rgba(76, 29, 149, 0.07);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.sensor-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #c4b5fd;
+
+  box-shadow:
+    0 16px 35px rgba(76, 29, 149, 0.13);
+}
+
+
+.sensor-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 52px;
+  height: 52px;
+
+  border-radius: 15px;
+
+  background: #f3e8ff;
+
+  font-size: 25px;
+}
+
+
+.sensor-card h2 {
+  margin: 2px 0 8px;
+
+  font-size: 19px;
+
+  color: #2e2142;
+}
+
+
+.sensor-card p {
+  margin: 0;
+
+  font-size: 14px;
+  line-height: 1.5;
+
+  color: #7c7189;
+}
+
+
+@media (max-width: 900px) {
+
+  .sensors-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .sensors-page {
+    padding: 30px 20px;
+  }
+
+
+  .sensors-header {
+    flex-direction: column;
+  }
+
+
+  .sensors-header h1 {
+    font-size: 32px;
+  }
+
+
+  .sensors-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

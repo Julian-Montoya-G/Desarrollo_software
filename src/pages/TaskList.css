@@ -1,0 +1,41 @@
+/* ========================================
+   TASK LIST
+======================================== */
+
+.task-list {
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+
+/* ========================================
+   ESTADO VACÍO
+======================================== */
+
+.empty-message {
+  padding:
+    40px 20px;
+
+  text-align:
+    center;
+
+  color:
+    var(--text-muted);
+
+  font-size:
+    14px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  border:
+    1px dashed var(--border-light);
+
+  border-radius:
+    var(--radius-md);
+}

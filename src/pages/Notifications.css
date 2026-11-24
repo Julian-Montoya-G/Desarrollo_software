@@ -1,0 +1,177 @@
+.notifications-page {
+  min-height: 100vh;
+  padding: 45px 7%;
+  box-sizing: border-box;
+  background:
+    radial-gradient(
+      circle at top right,
+      #eee5ff 0%,
+      #f8f7fc 35%,
+      #ffffff 70%
+    );
+  color: #241b35;
+}
+
+
+.notifications-header {
+  max-width: 1000px;
+  margin: 0 auto 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+
+.notifications-label {
+  color: #7438e8;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+
+.notifications-header h1 {
+  margin: 15px 0 10px;
+  font-size: 52px;
+}
+
+
+.notifications-header p {
+  margin: 0;
+  color: #776c87;
+  font-size: 18px;
+}
+
+
+.notifications-back-button {
+  border: none;
+  border-radius: 16px;
+  padding: 15px 25px;
+  background: #f0e8ff;
+  color: #6932d5;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+.notifications-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.notifications-card {
+  padding: 45px;
+  border: 1px solid #e7dcfa;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 20px 50px rgba(91, 54, 145, 0.12);
+  text-align: center;
+}
+
+
+.notifications-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background: #f0e5ff;
+  font-size: 38px;
+}
+
+
+.notifications-card h2 {
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+
+
+.notifications-description {
+  max-width: 650px;
+  margin: 0 auto 35px;
+  color: #776c87;
+  line-height: 1.6;
+}
+
+
+.notifications-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+
+.notifications-button {
+  border: none;
+  border-radius: 15px;
+  padding: 17px 15px;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+
+.notifications-button:hover {
+  transform: translateY(-2px);
+}
+
+
+.notifications-button.primary {
+  background: #7438e8;
+}
+
+
+.notifications-button.secondary {
+  background: #8b5cf6;
+}
+
+
+.notifications-button.danger {
+  background: #dc2626;
+}
+
+
+.notifications-status {
+  margin-top: 30px;
+  padding: 18px;
+  border-radius: 15px;
+  background: #f8f5ff;
+  color: #6932d5;
+  font-weight: 600;
+}
+
+
+@media (max-width: 700px) {
+
+  .notifications-page {
+    padding: 30px 20px;
+  }
+
+
+  .notifications-header {
+    flex-direction: column;
+  }
+
+
+  .notifications-header h1 {
+    font-size: 38px;
+  }
+
+
+  .notifications-card {
+    padding: 25px;
+  }
+
+
+  .notifications-buttons {
+    grid-template-columns: 1fr;
+  }
+
+}

@@ -1,0 +1,224 @@
+.filesystem-page {
+  min-height: 100vh;
+  padding: 45px 7%;
+  box-sizing: border-box;
+  background:
+    radial-gradient(
+      circle at top right,
+      #eee5ff 0%,
+      #f8f7fc 35%,
+      #ffffff 70%
+    );
+  color: #241b35;
+}
+
+
+.filesystem-header {
+  max-width: 1000px;
+  margin: 0 auto 55px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+
+.filesystem-label {
+  color: #7438e8;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 4px;
+}
+
+
+.filesystem-header h1 {
+  margin: 15px 0 10px;
+  font-size: 52px;
+}
+
+
+.filesystem-header p {
+  margin: 0;
+  color: #776c87;
+  font-size: 18px;
+}
+
+
+.filesystem-back-button {
+  border: none;
+  border-radius: 16px;
+  padding: 15px 25px;
+  background: #f0e8ff;
+  color: #6932d5;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+.filesystem-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+.filesystem-card {
+  padding: 45px;
+  border: 1px solid #e7dcfa;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 20px 50px rgba(91, 54, 145, 0.12);
+  text-align: center;
+}
+
+
+.filesystem-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+  background: #f0e5ff;
+  font-size: 38px;
+}
+
+
+.filesystem-card h2 {
+  margin-bottom: 12px;
+  font-size: 28px;
+}
+
+
+.filesystem-description {
+  margin-bottom: 30px;
+  color: #776c87;
+}
+
+
+.filesystem-form {
+  text-align: left;
+  margin-bottom: 25px;
+}
+
+
+.filesystem-form label {
+  display: block;
+  margin-bottom: 10px;
+  color: #3b2758;
+  font-weight: 700;
+}
+
+
+.filesystem-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  border: 1px solid #ddd3ec;
+  border-radius: 14px;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 15px;
+  color: #3b2758;
+  outline: none;
+}
+
+
+.filesystem-form textarea:focus {
+  border-color: #7438e8;
+}
+
+
+.filesystem-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+
+.filesystem-button {
+  border: none;
+  border-radius: 15px;
+  padding: 17px 15px;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+
+.filesystem-button.primary {
+  background: #7438e8;
+}
+
+
+.filesystem-button.secondary {
+  background: #8b5cf6;
+}
+
+
+.filesystem-button.danger {
+  background: #dc2626;
+}
+
+
+.filesystem-result {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 15px;
+  background: #f8f5ff;
+  text-align: left;
+}
+
+
+.filesystem-result h3 {
+  margin-top: 0;
+  color: #6932d5;
+}
+
+
+.filesystem-result p {
+  margin-bottom: 0;
+  color: #4f435c;
+  white-space: pre-wrap;
+}
+
+
+.filesystem-status {
+  margin-top: 25px;
+  padding: 18px;
+  border-radius: 15px;
+  background: #f8f5ff;
+  color: #6932d5;
+  font-weight: 600;
+}
+
+
+@media (max-width: 700px) {
+
+  .filesystem-page {
+    padding: 30px 20px;
+  }
+
+
+  .filesystem-header {
+    flex-direction: column;
+  }
+
+
+  .filesystem-header h1 {
+    font-size: 38px;
+  }
+
+
+  .filesystem-card {
+    padding: 25px;
+  }
+
+
+  .filesystem-buttons {
+    grid-template-columns: 1fr;
+  }
+
+}

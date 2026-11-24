@@ -1,0 +1,246 @@
+/* ========================================
+   TASK ITEM
+======================================== */
+
+.task-item {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 17px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.07),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border:
+    1px solid var(--border-light);
+
+  border-radius:
+    var(--radius-md);
+
+  box-shadow:
+    0 8px 25px
+    rgba(0, 0, 0, 0.18);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+/* ========================================
+   HOVER
+======================================== */
+
+.task-item:hover {
+  transform:
+    translateY(-2px);
+
+  border-color:
+    var(--primary-border);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(99, 102, 241, 0.11),
+      rgba(255, 255, 255, 0.035)
+    );
+}
+
+
+/* ========================================
+   CHECKBOX
+======================================== */
+
+.task-item input[type="checkbox"] {
+  width:
+    19px;
+
+  height:
+    19px;
+
+  margin:
+    0;
+
+  accent-color:
+    var(--primary);
+
+  cursor:
+    pointer;
+
+  flex-shrink:
+    0;
+}
+
+
+.task-item input[type="checkbox"]:disabled {
+  opacity:
+    0.4;
+
+  cursor:
+    not-allowed;
+}
+
+
+/* ========================================
+   TASK TITLE
+======================================== */
+
+.task-item span {
+  flex:
+    1;
+
+  min-width:
+    0;
+
+  color:
+    var(--text);
+
+  font-size:
+    14px;
+
+  font-weight:
+    500;
+
+  line-height:
+    1.5;
+
+  cursor:
+    pointer;
+
+  transition:
+    color 0.2s ease;
+}
+
+
+.task-item span:hover {
+  color:
+    #c4b5fd;
+}
+
+
+/* ========================================
+   COMPLETED
+======================================== */
+
+.completed {
+  color:
+    var(--text-muted) !important;
+
+  text-decoration:
+    line-through;
+
+  text-decoration-thickness:
+    1px;
+
+  opacity:
+    0.65;
+}
+
+
+/* ========================================
+   DELETE
+======================================== */
+
+.delete-button {
+  flex-shrink:
+    0;
+
+  padding:
+    8px 13px;
+
+  background:
+    transparent;
+
+  color:
+    var(--text-secondary);
+
+  border:
+    1px solid var(--border-light);
+
+  border-radius:
+    var(--radius-sm);
+
+  font-size:
+    12px;
+
+  font-weight:
+    600;
+
+  cursor:
+    pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.delete-button:hover {
+  background:
+    var(--danger-soft);
+
+  color:
+    #fca5a5;
+
+  border-color:
+    rgba(239, 68, 68, 0.35);
+
+  transform:
+    translateY(-1px);
+}
+
+
+.delete-button:disabled {
+  opacity:
+    0.35;
+
+  cursor:
+    not-allowed;
+
+  transform:
+    none;
+}
+
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+
+@media (max-width: 500px) {
+
+  .task-item {
+    padding:
+      14px;
+
+    gap:
+      10px;
+  }
+
+
+  .task-item span {
+    font-size:
+      13px;
+  }
+
+
+  .delete-button {
+    padding:
+      7px 10px;
+
+    font-size:
+      11px;
+  }
+
+}
